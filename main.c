@@ -23,11 +23,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "OscillatorSetup.h"
-
+#include "PortInit.h"
+#include "PinDefs.h"
 #define _XTAL_FREQ 8000000
 
 void main()
 {
     oscillatorInit();
-    __delay_ms(1000);
+    portInit();
+    while (1)
+    {
+        
+    }
 }

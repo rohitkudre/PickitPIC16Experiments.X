@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>OscillatorSetup.h</itemPath>
       <itemPath>PortInit.h</itemPath>
+      <itemPath>PinDefs.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -16,6 +17,7 @@
                    projectFiles="true">
       <itemPath>main.c</itemPath>
       <itemPath>oscillatorInit.c</itemPath>
+      <itemPath>PortInit.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

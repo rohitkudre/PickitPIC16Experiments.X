@@ -1,3 +1,5 @@
 build/default/production/main.p1:  \
 main.c  \
-OscillatorSetup.h 
+OscillatorSetup.h  \
+PortInit.h  \
+PinDefs.h 
