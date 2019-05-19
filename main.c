@@ -20,19 +20,25 @@
 // Use project enums instead of #define for ON and OFF.
 
 #include <xc.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include "OscillatorSetup.h"
 #include "PortInit.h"
 #include "PinDefs.h"
+#include "InterruptHandler.h"
+#include "Timer.h"
+#include "LEDApplication.h"
+
 #define _XTAL_FREQ 8000000
 
-void main()
+int main()
 {
     oscillatorInit();
     portInit();
+    InterruptInit();
+    Timer0Init();
+    LEDinit();
     while (1)
     {
-        
+        LEDProcess();
     }
+    return (0);
 }

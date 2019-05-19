@@ -3,5 +3,7 @@
 
 void portInit()
 {
-    TRISCbits.TRISC2 = 0; // Set RC2 as output
+    TRISA = 0x00;
+    TRISC = 0x00; // Set RC2 as output
+    TRISB = 0x00;
 }

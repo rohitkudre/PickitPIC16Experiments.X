@@ -7,6 +7,9 @@
       <itemPath>OscillatorSetup.h</itemPath>
       <itemPath>PortInit.h</itemPath>
       <itemPath>PinDefs.h</itemPath>
+      <itemPath>LEDApplication.h</itemPath>
+      <itemPath>Timer.h</itemPath>
+      <itemPath>InterruptHandler.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -18,6 +21,9 @@
       <itemPath>main.c</itemPath>
       <itemPath>oscillatorInit.c</itemPath>
       <itemPath>PortInit.c</itemPath>
+      <itemPath>LEDApplication.c</itemPath>
+      <itemPath>Timer.c</itemPath>
+      <itemPath>InterruptHandler.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -168,7 +174,7 @@
         <property key="communication.interface"
                   value="${communication.interface.default}"/>
         <property key="communication.speed" value="${communication.speed.default}"/>
-        <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="debugoptions.useswbreakpoints" value="true"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>
         <property key="memories.configurationmemory" value="true"/>
