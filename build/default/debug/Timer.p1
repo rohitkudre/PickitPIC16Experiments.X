@@ -503,8 +503,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _Timer0Init ]
 [f ]
 "6
-[; ;Timer.c: 6:     OPTION_REG = 0x4A;
-[e = _OPTION_REG -> -> 74 `i `uc ]
+[; ;Timer.c: 6:     OPTION_REG = 0x42;
+[e = _OPTION_REG -> -> 66 `i `uc ]
 "8
 [; ;Timer.c: 8: }
 [e :UE 372 ]

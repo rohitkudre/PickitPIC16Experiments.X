@@ -2,9 +2,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1185 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h: 1185: extern volatile unsigned char TRISA __attribute__((address(0x08C)));
 [v _TRISA `Vuc ~T0 @X0 0 e@140 ]
-"1274
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h: 1274: extern volatile unsigned char TRISC __attribute__((address(0x08E)));
-[v _TRISC `Vuc ~T0 @X0 0 e@142 ]
+"1280
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h: 1280:     struct {
+[s S77 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S77 . TRISC0 TRISC1 TRISC2 TRISC3 TRISC4 TRISC5 TRISC6 TRISC7 ]
+"1279
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h: 1279: typedef union {
+[u S76 `S77 1 ]
+[n S76 . . ]
+"1291
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h: 1291: extern volatile TRISCbits_t TRISCbits __attribute__((address(0x08E)));
+[v _TRISCbits `VS76 ~T0 @X0 0 e@142 ]
 "1235
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h: 1235: extern volatile unsigned char TRISB __attribute__((address(0x08D)));
 [v _TRISB `Vuc ~T0 @X0 0 e@141 ]
@@ -512,12 +520,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;PortInit.c: 6:     TRISA = 0x00;
 [e = _TRISA -> -> 0 `i `uc ]
 "7
-[; ;PortInit.c: 7:     TRISC = 0x00;
-[e = _TRISC -> -> 0 `i `uc ]
+[; ;PortInit.c: 7:     TRISCbits.TRISC2 = 0;
+[e = . . _TRISCbits 0 2 -> -> 0 `i `uc ]
 "8
-[; ;PortInit.c: 8:     TRISB = 0x00;
-[e = _TRISB -> -> 0 `i `uc ]
+[; ;PortInit.c: 8:     TRISCbits.TRISC4 = 0;
+[e = . . _TRISCbits 0 4 -> -> 0 `i `uc ]
 "9
-[; ;PortInit.c: 9: }
+[; ;PortInit.c: 9:     TRISB = 0x00;
+[e = _TRISB -> -> 0 `i `uc ]
+"10
+[; ;PortInit.c: 10: }
 [e :UE 372 ]
 }

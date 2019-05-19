@@ -5,4 +5,5 @@ PortInit.h  \
 PinDefs.h  \
 InterruptHandler.h  \
 Timer.h  \
-LEDApplication.h 
+LEDApplication.h  \
+UART.h 

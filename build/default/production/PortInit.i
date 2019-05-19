@@ -4473,6 +4473,7 @@ extern __bank0 __bit __timeout;
 void portInit()
 {
     TRISA = 0x00;
-    TRISC = 0x00;
+    TRISCbits.TRISC2 = 0;
+    TRISCbits.TRISC4 = 0;
     TRISB = 0x00;
 }

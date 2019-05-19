@@ -23,9 +23,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 "32 ./LEDApplication.h
 [; ;./LEDApplication.h: 32: void LEDinit(void);
 [v _LEDinit `(v ~T0 @X0 0 ef ]
-"31
+"21 ./UART.h
+[; ;./UART.h: 21: void UARTinit(void);
+[v _UARTinit `(v ~T0 @X0 0 ef ]
+"31 ./LEDApplication.h
 [; ;./LEDApplication.h: 31: void LEDProcess(void);
 [v _LEDProcess `(v ~T0 @X0 0 ef ]
+"24 ./UART.h
+[; ;./UART.h: 24: void UARTRx(void);
+[v _UARTRx `(v ~T0 @X0 0 ef ]
 "1 main.c
 [; ;main.c: 1: 
 [p x FOSC = INTOSC ]
@@ -555,49 +561,55 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./LEDApplication.h: 34: LEDData ledData;
 [v _ledData `S372 ~T0 @X0 1 e ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"32 main.c
-[; ;main.c: 32: int main()
+"33 main.c
+[; ;main.c: 33: int main()
 [v _main `(i ~T0 @X0 1 ef ]
-"33
-[; ;main.c: 33: {
+"34
+[; ;main.c: 34: {
 {
 [e :U _main ]
 [f ]
-"34
-[; ;main.c: 34:     oscillatorInit();
-[e ( _oscillatorInit ..  ]
 "35
-[; ;main.c: 35:     portInit();
-[e ( _portInit ..  ]
+[; ;main.c: 35:     oscillatorInit();
+[e ( _oscillatorInit ..  ]
 "36
-[; ;main.c: 36:     InterruptInit();
-[e ( _InterruptInit ..  ]
+[; ;main.c: 36:     portInit();
+[e ( _portInit ..  ]
 "37
-[; ;main.c: 37:     Timer0Init();
-[e ( _Timer0Init ..  ]
+[; ;main.c: 37:     InterruptInit();
+[e ( _InterruptInit ..  ]
 "38
-[; ;main.c: 38:     LEDinit();
-[e ( _LEDinit ..  ]
+[; ;main.c: 38:     Timer0Init();
+[e ( _Timer0Init ..  ]
 "39
-[; ;main.c: 39:     while (1)
-[e :U 375 ]
+[; ;main.c: 39:     LEDinit();
+[e ( _LEDinit ..  ]
 "40
-[; ;main.c: 40:     {
-{
+[; ;main.c: 40:     UARTinit();
+[e ( _UARTinit ..  ]
 "41
-[; ;main.c: 41:         LEDProcess();
-[e ( _LEDProcess ..  ]
+[; ;main.c: 41:     while (1)
+[e :U 375 ]
 "42
-[; ;main.c: 42:     }
+[; ;main.c: 42:     {
+{
+"43
+[; ;main.c: 43:         LEDProcess();
+[e ( _LEDProcess ..  ]
+"44
+[; ;main.c: 44:         UARTRx();
+[e ( _UARTRx ..  ]
+"45
+[; ;main.c: 45:     }
 }
 [e :U 374 ]
 [e $U 375  ]
 [e :U 376 ]
-"43
-[; ;main.c: 43:     return (0);
+"46
+[; ;main.c: 46:     return (0);
 [e ) -> 0 `i ]
 [e $UE 373  ]
-"44
-[; ;main.c: 44: }
+"47
+[; ;main.c: 47: }
 [e :UE 373 ]
 }

@@ -4571,6 +4571,6 @@ extern __bank0 __bit __timeout;
 
 void Timer0Init()
 {
-    OPTION_REG = 0x4A;
+    OPTION_REG = 0x42;
 
 }

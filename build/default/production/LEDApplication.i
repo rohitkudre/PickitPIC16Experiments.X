@@ -4596,6 +4596,18 @@ void getSec(void);
 void getmSec(void);
 # 3 "LEDApplication.c" 2
 
+# 1 "./UART.h" 1
+# 17 "./UART.h"
+extern volatile uint8_t uartRX;
+extern uint8_t fullWordReceived;
+
+extern char UARTRxBuff[];
+void UARTinit(void);
+void UARTprocess(void);
+uint8_t UARTTx(char *);
+void UARTRx(void);
+# 4 "LEDApplication.c" 2
+
 
 void LEDProcess()
 {
@@ -4603,12 +4615,14 @@ void LEDProcess()
     switch(ledData.LEDCurrentState)
     {
         case LED_OFF:
+            UARTTx("LED OFF\n");
             LATCbits.LATC2 = 0;
             ledData.LEDOffTime = milliSec;
             ledData.LEDCurrentState = LED_WAIT;
             break;
 
         case LED_ON:
+            UARTTx("LED ON\n");
             LATCbits.LATC2 = 1;
             ledData.LEDOnTime = milliSec;
             ledData.LEDCurrentState = LED_WAIT;

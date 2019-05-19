@@ -26,6 +26,7 @@
 #include "InterruptHandler.h"
 #include "Timer.h"
 #include "LEDApplication.h"
+#include "UART.h"
 
 #define _XTAL_FREQ 8000000
 
@@ -36,9 +37,11 @@ int main()
     InterruptInit();
     Timer0Init();
     LEDinit();
+    UARTinit();
     while (1)
     {
         LEDProcess();
+        
     }
     return (0);
 }

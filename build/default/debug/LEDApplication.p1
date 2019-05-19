@@ -7,6 +7,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./LEDApplication.h: 25: {
 [s S372 `E2596 1 `ul 1 `ul 1 ]
 [n S372 LEDData LEDCurrentState LEDOnTime LEDOffTime ]
+"23 ./UART.h
+[; ;./UART.h: 23: uint8_t UARTTx(char *);
+[v _UARTTx `(uc ~T0 @X0 0 ef1`*uc ]
 "2189 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h: 2189:     struct {
 [s S118 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -516,110 +519,131 @@ Version 4.0 HI-TECH Software Intermediate Code
 "34 ./LEDApplication.h
 [; ;./LEDApplication.h: 34: LEDData ledData;
 [v _ledData `S372 ~T0 @X0 1 e ]
-"5 LEDApplication.c
-[; ;LEDApplication.c: 5: void LEDProcess()
+"6 LEDApplication.c
+[; ;LEDApplication.c: 6: void LEDProcess()
 [v _LEDProcess `(v ~T0 @X0 1 ef ]
-"6
-[; ;LEDApplication.c: 6: {
+"7
+[; ;LEDApplication.c: 7: {
 {
 [e :U _LEDProcess ]
 [f ]
-"8
-[; ;LEDApplication.c: 8:     switch(ledData.LEDCurrentState)
-[e $U 375  ]
 "9
-[; ;LEDApplication.c: 9:     {
-{
+[; ;LEDApplication.c: 9:     switch(ledData.LEDCurrentState)
+[e $U 375  ]
 "10
-[; ;LEDApplication.c: 10:         case LED_OFF:
-[e :U 376 ]
+[; ;LEDApplication.c: 10:     {
+{
 "11
-[; ;LEDApplication.c: 11:             LATCbits.LATC2 = 0;
-[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
+[; ;LEDApplication.c: 11:         case LED_OFF:
+[e :U 376 ]
 "12
-[; ;LEDApplication.c: 12:             ledData.LEDOffTime = milliSec;
-[e = . _ledData 2 _milliSec ]
+[; ;LEDApplication.c: 12:             UARTTx("LED OFF\n");
+[e ( _UARTTx (1 :s 1C ]
 "13
-[; ;LEDApplication.c: 13:             ledData.LEDCurrentState = LED_WAIT;
-[e = . _ledData 0 . `E2596 2 ]
+[; ;LEDApplication.c: 13:             LATCbits.LATC2 = 0;
+[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
 "14
-[; ;LEDApplication.c: 14:             break;
-[e $U 374  ]
-"16
-[; ;LEDApplication.c: 16:         case LED_ON:
-[e :U 377 ]
-"17
-[; ;LEDApplication.c: 17:             LATCbits.LATC2 = 1;
-[e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
-"18
-[; ;LEDApplication.c: 18:             ledData.LEDOnTime = milliSec;
-[e = . _ledData 1 _milliSec ]
-"19
-[; ;LEDApplication.c: 19:             ledData.LEDCurrentState = LED_WAIT;
+[; ;LEDApplication.c: 14:             ledData.LEDOffTime = milliSec;
+[e = . _ledData 2 _milliSec ]
+"15
+[; ;LEDApplication.c: 15:             ledData.LEDCurrentState = LED_WAIT;
 [e = . _ledData 0 . `E2596 2 ]
-"20
-[; ;LEDApplication.c: 20:             break;
+"16
+[; ;LEDApplication.c: 16:             break;
 [e $U 374  ]
+"18
+[; ;LEDApplication.c: 18:         case LED_ON:
+[e :U 377 ]
+"19
+[; ;LEDApplication.c: 19:             UARTTx("LED ON\n");
+[e ( _UARTTx (1 :s 2C ]
+"20
+[; ;LEDApplication.c: 20:             LATCbits.LATC2 = 1;
+[e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
+"21
+[; ;LEDApplication.c: 21:             ledData.LEDOnTime = milliSec;
+[e = . _ledData 1 _milliSec ]
 "22
-[; ;LEDApplication.c: 22:         case LED_WAIT:
-[e :U 378 ]
+[; ;LEDApplication.c: 22:             ledData.LEDCurrentState = LED_WAIT;
+[e = . _ledData 0 . `E2596 2 ]
 "23
-[; ;LEDApplication.c: 23:             if (ledData.LEDOnTime > 0)
-[e $ ! > . _ledData 1 -> -> -> 0 `i `l `ul 379  ]
-"24
-[; ;LEDApplication.c: 24:             {
-{
+[; ;LEDApplication.c: 23:             break;
+[e $U 374  ]
 "25
-[; ;LEDApplication.c: 25:                 if (milliSec - ledData.LEDOnTime >= 2000)
-[e $ ! >= - _milliSec . _ledData 1 -> -> -> 2000 `i `l `ul 380  ]
+[; ;LEDApplication.c: 25:         case LED_WAIT:
+[e :U 378 ]
 "26
-[; ;LEDApplication.c: 26:                 {
-{
+[; ;LEDApplication.c: 26:             if (ledData.LEDOnTime > 0)
+[e $ ! > . _ledData 1 -> -> -> 0 `i `l `ul 379  ]
 "27
-[; ;LEDApplication.c: 27:                     ledData.LEDOnTime = 0;
-[e = . _ledData 1 -> -> -> 0 `i `l `ul ]
+[; ;LEDApplication.c: 27:             {
+{
 "28
-[; ;LEDApplication.c: 28:                     ledData.LEDCurrentState = LED_OFF;
-[e = . _ledData 0 . `E2596 1 ]
+[; ;LEDApplication.c: 28:                 if (milliSec - ledData.LEDOnTime >= 2000)
+[e $ ! >= - _milliSec . _ledData 1 -> -> -> 2000 `i `l `ul 380  ]
 "29
-[; ;LEDApplication.c: 29:                 }
+[; ;LEDApplication.c: 29:                 {
+{
+"30
+[; ;LEDApplication.c: 30:                     ledData.LEDOnTime = 0;
+[e = . _ledData 1 -> -> -> 0 `i `l `ul ]
+"31
+[; ;LEDApplication.c: 31:                     ledData.LEDCurrentState = LED_OFF;
+[e = . _ledData 0 . `E2596 1 ]
+"32
+[; ;LEDApplication.c: 32:                 }
 }
 [e :U 380 ]
-"30
-[; ;LEDApplication.c: 30:             }
-}
-[e :U 379 ]
-"32
-[; ;LEDApplication.c: 32:             if (ledData.LEDOffTime > 0)
-[e $ ! > . _ledData 2 -> -> -> 0 `i `l `ul 381  ]
 "33
-[; ;LEDApplication.c: 33:             {
-{
-"34
-[; ;LEDApplication.c: 34:                 if (milliSec - ledData.LEDOffTime >= 2000)
-[e $ ! >= - _milliSec . _ledData 2 -> -> -> 2000 `i `l `ul 382  ]
+[; ;LEDApplication.c: 33:             }
+}
+[e $U 381  ]
 "35
-[; ;LEDApplication.c: 35:                 {
-{
+[; ;LEDApplication.c: 35:             else if (ledData.LEDOffTime > 0)
+[e :U 379 ]
+[e $ ! > . _ledData 2 -> -> -> 0 `i `l `ul 382  ]
 "36
-[; ;LEDApplication.c: 36:                     ledData.LEDOffTime = 0;
-[e = . _ledData 2 -> -> -> 0 `i `l `ul ]
+[; ;LEDApplication.c: 36:             {
+{
 "37
-[; ;LEDApplication.c: 37:                     ledData.LEDCurrentState = LED_ON;
-[e = . _ledData 0 . `E2596 0 ]
+[; ;LEDApplication.c: 37:                 if (milliSec - ledData.LEDOffTime >= 2000)
+[e $ ! >= - _milliSec . _ledData 2 -> -> -> 2000 `i `l `ul 383  ]
 "38
-[; ;LEDApplication.c: 38:                 }
-}
-[e :U 382 ]
+[; ;LEDApplication.c: 38:                 {
+{
 "39
-[; ;LEDApplication.c: 39:             }
-}
-[e :U 381 ]
+[; ;LEDApplication.c: 39:                     ledData.LEDOffTime = 0;
+[e = . _ledData 2 -> -> -> 0 `i `l `ul ]
+"40
+[; ;LEDApplication.c: 40:                     ledData.LEDCurrentState = LED_ON;
+[e = . _ledData 0 . `E2596 0 ]
 "41
-[; ;LEDApplication.c: 41:             break;
-[e $U 374  ]
+[; ;LEDApplication.c: 41:                 }
+}
+[e :U 383 ]
 "42
-[; ;LEDApplication.c: 42:     }
+[; ;LEDApplication.c: 42:             }
+}
+[e $U 384  ]
+"43
+[; ;LEDApplication.c: 43:             else
+[e :U 382 ]
+"44
+[; ;LEDApplication.c: 44:             {
+{
+"45
+[; ;LEDApplication.c: 45:                 ledData.LEDCurrentState = LED_ON;
+[e = . _ledData 0 . `E2596 0 ]
+"46
+[; ;LEDApplication.c: 46:             }
+}
+[e :U 384 ]
+[e :U 381 ]
+"48
+[; ;LEDApplication.c: 48:             break;
+[e $U 374  ]
+"49
+[; ;LEDApplication.c: 49:     }
 }
 [e $U 374  ]
 [e :U 375 ]
@@ -628,31 +652,33 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> . `E2596 2 `ui 378
  374 ]
 [e :U 374 ]
-"43
-[; ;LEDApplication.c: 43: }
+"50
+[; ;LEDApplication.c: 50: }
 [e :UE 373 ]
 }
-"45
-[; ;LEDApplication.c: 45: void LEDinit()
+"52
+[; ;LEDApplication.c: 52: void LEDinit()
 [v _LEDinit `(v ~T0 @X0 1 ef ]
-"46
-[; ;LEDApplication.c: 46: {
+"53
+[; ;LEDApplication.c: 53: {
 {
 [e :U _LEDinit ]
 [f ]
-"47
-[; ;LEDApplication.c: 47:     LATCbits.LATC2 = 1;
+"54
+[; ;LEDApplication.c: 54:     LATCbits.LATC2 = 1;
 [e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
-"48
-[; ;LEDApplication.c: 48:     ledData.LEDCurrentState = LED_ON;
+"55
+[; ;LEDApplication.c: 55:     ledData.LEDCurrentState = LED_ON;
 [e = . _ledData 0 . `E2596 0 ]
-"49
-[; ;LEDApplication.c: 49:     ledData.LEDOnTime = 0;
+"56
+[; ;LEDApplication.c: 56:     ledData.LEDOnTime = 0;
 [e = . _ledData 1 -> -> -> 0 `i `l `ul ]
-"50
-[; ;LEDApplication.c: 50:     ledData.LEDOffTime = 0;
+"57
+[; ;LEDApplication.c: 57:     ledData.LEDOffTime = 0;
 [e = . _ledData 2 -> -> -> 0 `i `l `ul ]
-"51
-[; ;LEDApplication.c: 51: }
-[e :UE 383 ]
+"58
+[; ;LEDApplication.c: 58: }
+[e :UE 385 ]
 }
+[a 2C 76 69 68 32 79 78 10 0 ]
+[a 1C 76 69 68 32 79 70 70 10 0 ]

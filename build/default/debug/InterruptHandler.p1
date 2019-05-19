@@ -4,9 +4,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 "8304 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h: 8304: extern volatile __bit TMR0IF __attribute__((address(0x5A)));
 [v _TMR0IF `Vb ~T0 @X0 0 e@90 ]
-"351
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h: 351: extern volatile unsigned char INTCON __attribute__((address(0x00B)));
-[v _INTCON `Vuc ~T0 @X0 0 e@11 ]
+"8046
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h: 8046: extern volatile __bit RCIF __attribute__((address(0x8D)));
+[v _RCIF `Vb ~T0 @X0 0 e@141 ]
+"7533
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h: 7533: extern volatile __bit GIE __attribute__((address(0x5F)));
+[v _GIE `Vb ~T0 @X0 0 e@95 ]
+"7944
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h: 7944: extern volatile __bit PEIE __attribute__((address(0x5E)));
+[v _PEIE `Vb ~T0 @X0 0 e@94 ]
+"8301
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h: 8301: extern volatile __bit TMR0IE __attribute__((address(0x5D)));
+[v _TMR0IE `Vb ~T0 @X0 0 e@93 ]
+"8043
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h: 8043: extern volatile __bit RCIE __attribute__((address(0x48D)));
+[v _RCIE `Vb ~T0 @X0 0 e@1165 ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h: 54: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -499,84 +511,112 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7005
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h: 7005: __asm("TOSH equ 0FEFh");
 [; <" TOSH equ 0FEFh ;# ">
-"5 InterruptHandler.c
-[; ;InterruptHandler.c: 5: volatile uint16_t secCounter = 0;
+"6 InterruptHandler.c
+[; ;InterruptHandler.c: 6: volatile uint16_t secCounter = 0;
 [v _secCounter `Vus ~T0 @X0 1 e ]
 [i _secCounter
 -> -> 0 `i `us
 ]
-"6
-[; ;InterruptHandler.c: 6: volatile uint32_t milliSec = 0;
+"7
+[; ;InterruptHandler.c: 7: volatile uint32_t milliSec = 0;
 [v _milliSec `Vul ~T0 @X0 1 e ]
 [i _milliSec
 -> -> -> 0 `i `l `ul
 ]
-"7
-[; ;InterruptHandler.c: 7: volatile uint32_t sec = 0;
+"8
+[; ;InterruptHandler.c: 8: volatile uint32_t sec = 0;
 [v _sec `Vul ~T0 @X0 1 e ]
 [i _sec
 -> -> -> 0 `i `l `ul
 ]
-[v $root$_timer0Interrupt `(v ~T0 @X0 0 e ]
 "9
-[; ;InterruptHandler.c: 9: void __attribute__((picinterrupt(("")))) timer0Interrupt()
+[; ;InterruptHandler.c: 9: volatile uint8_t uartRX = 0;
+[v _uartRX `Vuc ~T0 @X0 1 e ]
+[i _uartRX
+-> -> 0 `i `uc
+]
+[v $root$_timer0Interrupt `(v ~T0 @X0 0 e ]
+"11
+[; ;InterruptHandler.c: 11: void __attribute__((picinterrupt(("")))) timer0Interrupt()
 [v _timer0Interrupt `(v ~T1 @X0 1 ef ]
-"10
-[; ;InterruptHandler.c: 10: {
+"12
+[; ;InterruptHandler.c: 12: {
 {
 [e :U _timer0Interrupt ]
 [f ]
-"11
-[; ;InterruptHandler.c: 11:     if (TMR0IF == 1)
-[e $ ! == -> _TMR0IF `i -> 1 `i 373  ]
-"12
-[; ;InterruptHandler.c: 12:     {
-{
 "13
-[; ;InterruptHandler.c: 13:         TMR0IF = 0;
-[e = _TMR0IF -> -> 0 `i `b ]
+[; ;InterruptHandler.c: 13:     if (TMR0IF == 1)
+[e $ ! == -> _TMR0IF `i -> 1 `i 373  ]
 "14
-[; ;InterruptHandler.c: 14:         milliSec ++;
-[e ++ _milliSec -> -> 1 `i `Vul ]
-"15
-[; ;InterruptHandler.c: 15:         secCounter ++;
-[e ++ _secCounter -> -> 1 `i `Vus ]
-"16
-[; ;InterruptHandler.c: 16:         if (secCounter == 1000)
-[e $ ! == -> _secCounter `ui -> -> 1000 `i `ui 374  ]
-"17
-[; ;InterruptHandler.c: 17:         {
+[; ;InterruptHandler.c: 14:     {
 {
+"15
+[; ;InterruptHandler.c: 15:         TMR0IF = 0;
+[e = _TMR0IF -> -> 0 `i `b ]
+"16
+[; ;InterruptHandler.c: 16:         milliSec ++;
+[e ++ _milliSec -> -> 1 `i `Vul ]
+"17
+[; ;InterruptHandler.c: 17:         secCounter ++;
+[e ++ _secCounter -> -> 1 `i `Vus ]
 "18
-[; ;InterruptHandler.c: 18:             sec ++;
-[e ++ _sec -> -> 1 `i `Vul ]
+[; ;InterruptHandler.c: 18:         if (secCounter == 1000)
+[e $ ! == -> _secCounter `ui -> -> 1000 `i `ui 374  ]
 "19
-[; ;InterruptHandler.c: 19:             secCounter = 0;
-[e = _secCounter -> -> 0 `i `us ]
+[; ;InterruptHandler.c: 19:         {
+{
 "20
-[; ;InterruptHandler.c: 20:         }
+[; ;InterruptHandler.c: 20:             sec ++;
+[e ++ _sec -> -> 1 `i `Vul ]
+"21
+[; ;InterruptHandler.c: 21:             secCounter = 0;
+[e = _secCounter -> -> 0 `i `us ]
+"22
+[; ;InterruptHandler.c: 22:         }
 }
 [e :U 374 ]
-"21
-[; ;InterruptHandler.c: 21:     }
+"23
+[; ;InterruptHandler.c: 23:     }
 }
 [e :U 373 ]
-"22
-[; ;InterruptHandler.c: 22: }
+"25
+[; ;InterruptHandler.c: 25:     if (RCIF == 1)
+[e $ ! == -> _RCIF `i -> 1 `i 375  ]
+"26
+[; ;InterruptHandler.c: 26:     {
+{
+"27
+[; ;InterruptHandler.c: 27:         uartRX = 1;
+[e = _uartRX -> -> 1 `i `uc ]
+"28
+[; ;InterruptHandler.c: 28:     }
+}
+[e :U 375 ]
+"29
+[; ;InterruptHandler.c: 29: }
 [e :UE 372 ]
 }
-"25
-[; ;InterruptHandler.c: 25: void InterruptInit()
+"32
+[; ;InterruptHandler.c: 32: void InterruptInit()
 [v _InterruptInit `(v ~T0 @X0 1 ef ]
-"26
-[; ;InterruptHandler.c: 26: {
+"33
+[; ;InterruptHandler.c: 33: {
 {
 [e :U _InterruptInit ]
 [f ]
-"27
-[; ;InterruptHandler.c: 27:     INTCON = 0xA0;
-[e = _INTCON -> -> 160 `i `uc ]
-"28
-[; ;InterruptHandler.c: 28: }
-[e :UE 375 ]
+"34
+[; ;InterruptHandler.c: 34:     GIE = 1;
+[e = _GIE -> -> 1 `i `b ]
+"35
+[; ;InterruptHandler.c: 35:     PEIE = 1;
+[e = _PEIE -> -> 1 `i `b ]
+"36
+[; ;InterruptHandler.c: 36:     TMR0IE = 1;
+[e = _TMR0IE -> -> 1 `i `b ]
+"37
+[; ;InterruptHandler.c: 37:     RCIE = 1;
+[e = _RCIE -> -> 1 `i `b ]
+"38
+[; ;InterruptHandler.c: 38: }
+[e :UE 376 ]
 }

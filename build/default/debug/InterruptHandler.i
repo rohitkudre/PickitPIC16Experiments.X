@@ -130,6 +130,8 @@ void getSec(void);
 void getmSec(void);
 # 2 "InterruptHandler.c" 2
 
+# 1 "./UART.h" 1
+# 10 "./UART.h"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -4571,12 +4573,30 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 2 3
+# 10 "./UART.h" 2
+
+
+
+
+
+
+
+extern volatile uint8_t uartRX;
+extern uint8_t fullWordReceived;
+
+extern char UARTRxBuff[];
+void UARTinit(void);
+void UARTprocess(void);
+uint8_t UARTTx(char *);
+void UARTRx(void);
 # 3 "InterruptHandler.c" 2
+
 
 
 volatile uint16_t secCounter = 0;
 volatile uint32_t milliSec = 0;
 volatile uint32_t sec = 0;
+volatile uint8_t uartRX = 0;
 
 void __attribute__((picinterrupt(("")))) timer0Interrupt()
 {
@@ -4591,10 +4611,18 @@ void __attribute__((picinterrupt(("")))) timer0Interrupt()
             secCounter = 0;
         }
     }
+
+    if (RCIF == 1)
+    {
+        uartRX = 1;
+    }
 }
 
 
 void InterruptInit()
 {
-    INTCON = 0xA0;
+    GIE = 1;
+    PEIE = 1;
+    TMR0IE = 1;
+    RCIE = 1;
 }

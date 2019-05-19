@@ -1,19 +1,22 @@
 #include "LEDApplication.h"
 #include "PinDefs.h"
 #include "Timer.h"
+#include "UART.h"
 
 void LEDProcess()
 {
-    
+
     switch(ledData.LEDCurrentState)
     {
         case LED_OFF:
+            UARTTx("LED OFF\n");
             LED = 0;
             ledData.LEDOffTime = milliSec;
             ledData.LEDCurrentState = LED_WAIT;
             break;
             
         case LED_ON:
+            UARTTx("LED ON\n");
             LED = 1;
             ledData.LEDOnTime = milliSec;
             ledData.LEDCurrentState = LED_WAIT;

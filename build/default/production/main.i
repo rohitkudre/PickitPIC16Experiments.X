@@ -4623,6 +4623,18 @@ void LEDinit(void);
 LEDData ledData;
 # 28 "main.c" 2
 
+# 1 "./UART.h" 1
+# 17 "./UART.h"
+extern volatile uint8_t uartRX;
+extern uint8_t fullWordReceived;
+
+extern char UARTRxBuff[];
+void UARTinit(void);
+void UARTprocess(void);
+uint8_t UARTTx(char *);
+void UARTRx(void);
+# 29 "main.c" 2
+
 
 
 
@@ -4633,9 +4645,11 @@ int main()
     InterruptInit();
     Timer0Init();
     LEDinit();
+    UARTinit();
     while (1)
     {
         LEDProcess();
+
     }
     return (0);
 }
