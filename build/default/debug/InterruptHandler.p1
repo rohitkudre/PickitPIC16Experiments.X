@@ -603,40 +603,37 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;InterruptHandler.c: 26:     {
 {
 "27
-[; ;InterruptHandler.c: 27:         uartRX = 1;
-[e = _uartRX -> -> 1 `i `uc ]
-"28
-[; ;InterruptHandler.c: 28:         fifoWrite();
+[; ;InterruptHandler.c: 27:         fifoWrite();
 [e ( _fifoWrite ..  ]
-"29
-[; ;InterruptHandler.c: 29:     }
+"28
+[; ;InterruptHandler.c: 28:     }
 }
 [e :U 376 ]
-"30
-[; ;InterruptHandler.c: 30: }
+"29
+[; ;InterruptHandler.c: 29: }
 [e :UE 373 ]
 }
-"33
-[; ;InterruptHandler.c: 33: void InterruptInit()
+"32
+[; ;InterruptHandler.c: 32: void InterruptInit()
 [v _InterruptInit `(v ~T0 @X0 1 ef ]
-"34
-[; ;InterruptHandler.c: 34: {
+"33
+[; ;InterruptHandler.c: 33: {
 {
 [e :U _InterruptInit ]
 [f ]
-"35
-[; ;InterruptHandler.c: 35:     GIE = 1;
+"34
+[; ;InterruptHandler.c: 34:     GIE = 1;
 [e = _GIE -> -> 1 `i `b ]
-"36
-[; ;InterruptHandler.c: 36:     PEIE = 1;
+"35
+[; ;InterruptHandler.c: 35:     PEIE = 1;
 [e = _PEIE -> -> 1 `i `b ]
-"37
-[; ;InterruptHandler.c: 37:     TMR0IE = 1;
+"36
+[; ;InterruptHandler.c: 36:     TMR0IE = 1;
 [e = _TMR0IE -> -> 1 `i `b ]
-"38
-[; ;InterruptHandler.c: 38:     RCIE = 1;
+"37
+[; ;InterruptHandler.c: 37:     RCIE = 1;
 [e = _RCIE -> -> 1 `i `b ]
-"39
-[; ;InterruptHandler.c: 39: }
+"38
+[; ;InterruptHandler.c: 38: }
 [e :UE 377 ]
 }

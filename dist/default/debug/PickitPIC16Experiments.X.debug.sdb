@@ -55,7 +55,7 @@ FIFO_EMPTY 4
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
 "11 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X\InterruptHandler.c
 [v _timer0Interrupt timer0Interrupt `II(v  1 e 1 0 ]
-"33
+"32
 [v _InterruptInit InterruptInit `(v  1 e 1 0 ]
 "6 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X\LEDApplication.c
 [v _LEDProcess LEDProcess `(v  1 e 1 0 ]
@@ -73,15 +73,15 @@ FIFO_EMPTY 4
 [v _UARTinit UARTinit `(v  1 e 1 0 ]
 "29
 [v _UARTprocess UARTprocess `(v  1 e 1 0 ]
-"77
+"78
 [v _UARTTx UARTTx `(uc  1 e 1 0 ]
-"100
+"89
 [v _fifoWrite fifoWrite `(uc  1 e 1 0 ]
-"121
+"113
 [v _fifoRead fifoRead `(*.39uc  1 e 1 0 ]
-"136
+"128
 [v _checkUartFull checkUartFull `(uc  1 e 1 0 ]
-"148
+"140
 [v _checkUartEmpty checkUartEmpty `(uc  1 e 1 0 ]
 [s S26 LEDData 9 `E2605 1 LEDCurrentState 1 0 `ul 1 LEDOnTime 4 1 `ul 1 LEDOffTime 4 5 ]
 "34 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X/LEDApplication.h
@@ -192,24 +192,24 @@ FIFO_EMPTY 4
 [v _UARTprocess UARTprocess `(v  1 e 1 0 ]
 {
 "32
-[v UARTprocess@receivedString receivedString `[32]uc  1 a 32 4 ]
+[v UARTprocess@receivedString receivedString `[32]uc  1 a 32 2 ]
 "33
-[v UARTprocess@receivePtr receivePtr `*.39uc  1 a 2 38 ]
+[v UARTprocess@receivePtr receivePtr `*.39uc  1 a 2 36 ]
 "31
-[v UARTprocess@i i `uc  1 a 1 37 ]
-"75
+[v UARTprocess@i i `uc  1 a 1 35 ]
+"76
 } 0
-"121
+"113
 [v _fifoRead fifoRead `(*.39uc  1 e 1 0 ]
 {
-"123
-[v fifoRead@returnIndex returnIndex `uc  1 a 1 4 ]
-"134
+"115
+[v fifoRead@returnIndex returnIndex `uc  1 a 1 5 ]
+"126
 } 0
-"148
+"140
 [v _checkUartEmpty checkUartEmpty `(uc  1 e 1 0 ]
 {
-"158
+"150
 } 0
 "10
 [v _UARTinit UARTinit `(v  1 e 1 0 ]
@@ -231,31 +231,31 @@ FIFO_EMPTY 4
 {
 "50
 } 0
-"77 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X\UART.c
+"78 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X\UART.c
 [v _UARTTx UARTTx `(uc  1 e 1 0 ]
 {
-[v UARTTx@sendString sendString `*.26uc  1 p 2 0 ]
-"86
+[v UARTTx@sendString sendString `*.26uc  1 p 2 3 ]
+"87
 } 0
-"33 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X\InterruptHandler.c
+"32 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X\InterruptHandler.c
 [v _InterruptInit InterruptInit `(v  1 e 1 0 ]
 {
-"39
+"38
 } 0
 "11
 [v _timer0Interrupt timer0Interrupt `II(v  1 e 1 0 ]
 {
-"30
+"29
 } 0
-"100 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X\UART.c
+"89 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X\UART.c
 [v _fifoWrite fifoWrite `(uc  1 e 1 0 ]
 {
-"102
+"91
 [v fifoWrite@letter letter `uc  1 a 1 2 ]
-"119
+"111
 } 0
-"136
+"128
 [v _checkUartFull checkUartFull `(uc  1 e 1 0 ]
 {
-"146
+"138
 } 0

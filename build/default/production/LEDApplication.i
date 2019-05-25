@@ -4632,11 +4632,12 @@ uint8_t UARTTx(char *);
 void UARTRx(void);
 
 
-uint8_t fifoWrite(volatile unsigned char);
+uint8_t fifoWrite(void );
 char *fifoRead(void );
 
 uint8_t checkUartFull(void );
 uint8_t checkUartEmpty(void );
+void fifoPurge(void );
 # 4 "LEDApplication.c" 2
 
 

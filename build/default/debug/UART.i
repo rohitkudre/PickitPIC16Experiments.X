@@ -4854,6 +4854,7 @@ void UARTprocess()
             }
             break;
         case FIFO_FULL:
+            uData.currentState = UART_READ;
             UARTTx("Fifo Full!! \n");
             break;
         case FIFO_EMPTY:
@@ -4871,13 +4872,16 @@ uint8_t UARTTx(char *sendString)
     }
     return 1;
 }
-# 100 "UART.c"
+
 uint8_t fifoWrite()
 {
     char letter = RCREG;
     if (!checkUartFull())
     {
-        if (letter == '\n' || letter == '\r' || letter == '\0')
+        if (letter == '\n' ||
+            letter == '\r' ||
+            letter == '\0' ||
+            letter == 0x3)
         {
             letter = '\0';
             uData.currentState = UART_READ;

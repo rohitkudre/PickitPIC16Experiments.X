@@ -49,6 +49,6 @@ char *fifoRead(void );
 
 uint8_t checkUartFull(void );
 uint8_t checkUartEmpty(void );
-
+void fifoPurge(void );
 #endif	/* UART_H */
 

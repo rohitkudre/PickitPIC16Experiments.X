@@ -754,19 +754,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;UART.c: 69:         case FIFO_FULL:
 [e :U 389 ]
 "70
-[; ;UART.c: 70:             UARTTx("Fifo Full!! \n");
-[e ( _UARTTx (1 :s 3C ]
+[; ;UART.c: 70:             uData.currentState = UART_READ;
+[e = . _uData 0 . `E2596 2 ]
 "71
-[; ;UART.c: 71:             break;
-[e $U 378  ]
+[; ;UART.c: 71:             UARTTx("Fifo Full!! \n");
+[e ( _UARTTx (1 :s 3C ]
 "72
-[; ;UART.c: 72:         case FIFO_EMPTY:
-[e :U 390 ]
+[; ;UART.c: 72:             break;
+[e $U 378  ]
 "73
-[; ;UART.c: 73:             UARTTx("Fifo Empty!! \n");
-[e ( _UARTTx (1 :s 4C ]
+[; ;UART.c: 73:         case FIFO_EMPTY:
+[e :U 390 ]
 "74
-[; ;UART.c: 74:     }
+[; ;UART.c: 74:             UARTTx("Fifo Empty!! \n");
+[e ( _UARTTx (1 :s 4C ]
+"75
+[; ;UART.c: 75:     }
 }
 [e $U 378  ]
 [e :U 379 ]
@@ -777,255 +780,255 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> . `E2596 4 `ui 390
  378 ]
 [e :U 378 ]
-"75
-[; ;UART.c: 75: }
+"76
+[; ;UART.c: 76: }
 [e :UE 377 ]
 }
-"77
-[; ;UART.c: 77: uint8_t UARTTx(char *sendString)
-[v _UARTTx `(uc ~T0 @X0 1 ef1`*uc ]
 "78
-[; ;UART.c: 78: {
+[; ;UART.c: 78: uint8_t UARTTx(char *sendString)
+[v _UARTTx `(uc ~T0 @X0 1 ef1`*uc ]
+"79
+[; ;UART.c: 79: {
 {
 [e :U _UARTTx ]
-"77
-[; ;UART.c: 77: uint8_t UARTTx(char *sendString)
-[v _sendString `*uc ~T0 @X0 1 r1 ]
 "78
-[; ;UART.c: 78: {
-[f ]
+[; ;UART.c: 78: uint8_t UARTTx(char *sendString)
+[v _sendString `*uc ~T0 @X0 1 r1 ]
 "79
-[; ;UART.c: 79:     while (*sendString)
+[; ;UART.c: 79: {
+[f ]
+"80
+[; ;UART.c: 80:     while (*sendString)
 [e $U 392  ]
 [e :U 393 ]
-"80
-[; ;UART.c: 80:     {
-{
 "81
-[; ;UART.c: 81:         while (!TRMT);
+[; ;UART.c: 81:     {
+{
+"82
+[; ;UART.c: 82:         while (!TRMT);
 [e $U 395  ]
 [e :U 396 ]
 [e :U 395 ]
 [e $ ! _TRMT 396  ]
 [e :U 397 ]
-"82
-[; ;UART.c: 82:         TXREG = *sendString;
-[e = _TXREG -> *U _sendString `uc ]
 "83
-[; ;UART.c: 83:         sendString ++;
-[e ++ _sendString * -> -> 1 `i `x -> -> # *U _sendString `i `x ]
+[; ;UART.c: 83:         TXREG = *sendString;
+[e = _TXREG -> *U _sendString `uc ]
 "84
-[; ;UART.c: 84:     }
+[; ;UART.c: 84:         sendString ++;
+[e ++ _sendString * -> -> 1 `i `x -> -> # *U _sendString `i `x ]
+"85
+[; ;UART.c: 85:     }
 }
 [e :U 392 ]
-"79
-[; ;UART.c: 79:     while (*sendString)
+"80
+[; ;UART.c: 80:     while (*sendString)
 [e $ != -> *U _sendString `i -> 0 `i 393  ]
 [e :U 394 ]
-"85
-[; ;UART.c: 85:     return 1;
+"86
+[; ;UART.c: 86:     return 1;
 [e ) -> -> 1 `i `uc ]
 [e $UE 391  ]
-"86
-[; ;UART.c: 86: }
+"87
+[; ;UART.c: 87: }
 [e :UE 391 ]
 }
-"100
-[; ;UART.c: 100: uint8_t fifoWrite()
+"89
+[; ;UART.c: 89: uint8_t fifoWrite()
 [v _fifoWrite `(uc ~T0 @X0 1 ef ]
-"101
-[; ;UART.c: 101: {
+"90
+[; ;UART.c: 90: {
 {
 [e :U _fifoWrite ]
 [f ]
-"102
-[; ;UART.c: 102:     char letter = RCREG;
+"91
+[; ;UART.c: 91:     char letter = RCREG;
 [v _letter `uc ~T0 @X0 1 a ]
 [e = _letter -> _RCREG `uc ]
-"103
-[; ;UART.c: 103:     if (!checkUartFull())
+"92
+[; ;UART.c: 92:     if (!checkUartFull())
 [e $ ! ! != -> ( _checkUartFull ..  `i -> 0 `i 399  ]
-"104
-[; ;UART.c: 104:     {
+"93
+[; ;UART.c: 93:     {
 {
-"105
-[; ;UART.c: 105:         if (letter == '\n' || letter == '\r' || letter == '\0')
-[e $ ! || || == -> _letter `ui -> 10 `ui == -> _letter `ui -> 13 `ui == -> _letter `ui -> 0 `ui 400  ]
-"106
-[; ;UART.c: 106:         {
+"94
+[; ;UART.c: 94:         if (letter == '\n' ||
+[e $ ! || || || == -> _letter `ui -> 10 `ui == -> _letter `ui -> 13 `ui == -> _letter `ui -> 0 `ui == -> _letter `i -> 3 `i 400  ]
+"98
+[; ;UART.c: 98:         {
 {
-"107
-[; ;UART.c: 107:             letter = '\0';
+"99
+[; ;UART.c: 99:             letter = '\0';
 [e = _letter -> -> 0 `ui `uc ]
-"108
-[; ;UART.c: 108:             uData.currentState = UART_READ;
+"100
+[; ;UART.c: 100:             uData.currentState = UART_READ;
 [e = . _uData 0 . `E2596 2 ]
-"109
-[; ;UART.c: 109:         }
+"101
+[; ;UART.c: 101:         }
 }
 [e :U 400 ]
-"110
-[; ;UART.c: 110:         uartFifoBuff[fifoHead] = letter;
+"102
+[; ;UART.c: 102:         uartFifoBuff[fifoHead] = letter;
 [e = *U + &U _uartFifoBuff * -> _fifoHead `ux -> -> # *U &U _uartFifoBuff `ui `ux _letter ]
-"111
-[; ;UART.c: 111:         fifoHead = (fifoHead + 1) % 256;
+"103
+[; ;UART.c: 103:         fifoHead = (fifoHead + 1) % 256;
 [e = _fifoHead -> % + -> _fifoHead `i -> 1 `i -> 256 `i `uc ]
-"112
-[; ;UART.c: 112:         return 1;
+"104
+[; ;UART.c: 104:         return 1;
 [e ) -> -> 1 `i `uc ]
 [e $UE 398  ]
-"113
-[; ;UART.c: 113:     }
+"105
+[; ;UART.c: 105:     }
 }
 [e $U 401  ]
-"114
-[; ;UART.c: 114:     else
+"106
+[; ;UART.c: 106:     else
 [e :U 399 ]
-"115
-[; ;UART.c: 115:     {
+"107
+[; ;UART.c: 107:     {
 {
-"116
-[; ;UART.c: 116:         uData.currentState = FIFO_FULL;
+"108
+[; ;UART.c: 108:         uData.currentState = FIFO_FULL;
 [e = . _uData 0 . `E2596 3 ]
-"117
-[; ;UART.c: 117:         return 0;
+"109
+[; ;UART.c: 109:         return 0;
 [e ) -> -> 0 `i `uc ]
 [e $UE 398  ]
-"118
-[; ;UART.c: 118:     }
+"110
+[; ;UART.c: 110:     }
 }
 [e :U 401 ]
-"119
-[; ;UART.c: 119: }
+"111
+[; ;UART.c: 111: }
 [e :UE 398 ]
 }
-"121
-[; ;UART.c: 121: char *fifoRead()
+"113
+[; ;UART.c: 113: char *fifoRead()
 [v _fifoRead `(*uc ~T0 @X0 1 ef ]
-"122
-[; ;UART.c: 122: {
+"114
+[; ;UART.c: 114: {
 {
 [e :U _fifoRead ]
 [f ]
-"123
-[; ;UART.c: 123:     uint8_t returnIndex;
+"115
+[; ;UART.c: 115:     uint8_t returnIndex;
 [v _returnIndex `uc ~T0 @X0 1 a ]
-"124
-[; ;UART.c: 124:     if (checkUartEmpty())
+"116
+[; ;UART.c: 116:     if (checkUartEmpty())
 [e $ ! != -> ( _checkUartEmpty ..  `i -> 0 `i 403  ]
-"125
-[; ;UART.c: 125:     {
+"117
+[; ;UART.c: 117:     {
 {
-"126
-[; ;UART.c: 126:         return ((void*)0);
+"118
+[; ;UART.c: 118:         return ((void*)0);
 [e ) -> -> -> 0 `i `*v `*uc ]
 [e $UE 402  ]
-"127
-[; ;UART.c: 127:     }
+"119
+[; ;UART.c: 119:     }
 }
 [e $U 404  ]
-"128
-[; ;UART.c: 128:     else
+"120
+[; ;UART.c: 120:     else
 [e :U 403 ]
-"129
-[; ;UART.c: 129:     {
+"121
+[; ;UART.c: 121:     {
 {
-"130
-[; ;UART.c: 130:         returnIndex = fifoTail;
+"122
+[; ;UART.c: 122:         returnIndex = fifoTail;
 [e = _returnIndex _fifoTail ]
-"131
-[; ;UART.c: 131:         fifoTail = (fifoTail + 1) % 256;
+"123
+[; ;UART.c: 123:         fifoTail = (fifoTail + 1) % 256;
 [e = _fifoTail -> % + -> _fifoTail `i -> 1 `i -> 256 `i `uc ]
-"132
-[; ;UART.c: 132:         return (&uartFifoBuff[returnIndex]);
+"124
+[; ;UART.c: 124:         return (&uartFifoBuff[returnIndex]);
 [e ) &U *U + &U _uartFifoBuff * -> _returnIndex `ux -> -> # *U &U _uartFifoBuff `ui `ux ]
 [e $UE 402  ]
-"133
-[; ;UART.c: 133:     }
+"125
+[; ;UART.c: 125:     }
 }
 [e :U 404 ]
-"134
-[; ;UART.c: 134: }
+"126
+[; ;UART.c: 126: }
 [e :UE 402 ]
 }
-"136
-[; ;UART.c: 136: uint8_t checkUartFull()
+"128
+[; ;UART.c: 128: uint8_t checkUartFull()
 [v _checkUartFull `(uc ~T0 @X0 1 ef ]
-"137
-[; ;UART.c: 137: {
+"129
+[; ;UART.c: 129: {
 {
 [e :U _checkUartFull ]
 [f ]
-"138
-[; ;UART.c: 138:     if ((fifoHead + 1) % 256 == fifoTail)
+"130
+[; ;UART.c: 130:     if ((fifoHead + 1) % 256 == fifoTail)
 [e $ ! == % + -> _fifoHead `i -> 1 `i -> 256 `i -> _fifoTail `i 406  ]
-"139
-[; ;UART.c: 139:     {
+"131
+[; ;UART.c: 131:     {
 {
-"140
-[; ;UART.c: 140:         return 1;
+"132
+[; ;UART.c: 132:         return 1;
 [e ) -> -> 1 `i `uc ]
 [e $UE 405  ]
-"141
-[; ;UART.c: 141:     }
+"133
+[; ;UART.c: 133:     }
 }
 [e $U 407  ]
-"142
-[; ;UART.c: 142:     else
+"134
+[; ;UART.c: 134:     else
 [e :U 406 ]
+"135
+[; ;UART.c: 135:     {
+{
+"136
+[; ;UART.c: 136:         return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 405  ]
+"137
+[; ;UART.c: 137:     }
+}
+[e :U 407 ]
+"138
+[; ;UART.c: 138: }
+[e :UE 405 ]
+}
+"140
+[; ;UART.c: 140: uint8_t checkUartEmpty()
+[v _checkUartEmpty `(uc ~T0 @X0 1 ef ]
+"141
+[; ;UART.c: 141: {
+{
+[e :U _checkUartEmpty ]
+[f ]
+"142
+[; ;UART.c: 142:     if (fifoHead == fifoTail)
+[e $ ! == -> _fifoHead `i -> _fifoTail `i 409  ]
 "143
 [; ;UART.c: 143:     {
 {
 "144
-[; ;UART.c: 144:         return 0;
-[e ) -> -> 0 `i `uc ]
-[e $UE 405  ]
+[; ;UART.c: 144:         return 1;
+[e ) -> -> 1 `i `uc ]
+[e $UE 408  ]
 "145
 [; ;UART.c: 145:     }
 }
-[e :U 407 ]
-"146
-[; ;UART.c: 146: }
-[e :UE 405 ]
-}
-"148
-[; ;UART.c: 148: uint8_t checkUartEmpty()
-[v _checkUartEmpty `(uc ~T0 @X0 1 ef ]
-"149
-[; ;UART.c: 149: {
-{
-[e :U _checkUartEmpty ]
-[f ]
-"150
-[; ;UART.c: 150:     if (fifoHead == fifoTail)
-[e $ ! == -> _fifoHead `i -> _fifoTail `i 409  ]
-"151
-[; ;UART.c: 151:     {
-{
-"152
-[; ;UART.c: 152:         return 1;
-[e ) -> -> 1 `i `uc ]
-[e $UE 408  ]
-"153
-[; ;UART.c: 153:     }
-}
 [e $U 410  ]
-"154
-[; ;UART.c: 154:     else
+"146
+[; ;UART.c: 146:     else
 [e :U 409 ]
-"155
-[; ;UART.c: 155:     {
+"147
+[; ;UART.c: 147:     {
 {
-"156
-[; ;UART.c: 156:         return 0;
+"148
+[; ;UART.c: 148:         return 0;
 [e ) -> -> 0 `i `uc ]
 [e $UE 408  ]
-"157
-[; ;UART.c: 157:     }
+"149
+[; ;UART.c: 149:     }
 }
 [e :U 410 ]
-"158
-[; ;UART.c: 158: }
+"150
+[; ;UART.c: 150: }
 [e :UE 408 ]
 }
 [a 1C 82 101 99 101 105 118 101 100 32 83 116 114 105 110 103 58 32 10 0 ]

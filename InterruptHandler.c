@@ -24,7 +24,6 @@ void __interrupt () timer0Interrupt()
     
     if (RCIF == 1)
     {
-        uartRX = 1;
         fifoWrite();
     }
 }
