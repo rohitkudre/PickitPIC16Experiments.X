@@ -41,7 +41,7 @@ int main()
     while (1)
     {
         LEDProcess();
-        
+        UARTprocess();
     }
     return (0);
 }

@@ -7,8 +7,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./LEDApplication.h: 25: {
 [s S372 `E2596 1 `ul 1 `ul 1 ]
 [n S372 LEDData LEDCurrentState LEDOnTime LEDOffTime ]
-"23 ./UART.h
-[; ;./UART.h: 23: uint8_t UARTTx(char *);
+"27 ./UART.h
+[; ;./UART.h: 27: uartData uData;
+[c E2615 0 1 2 3 4 .. ]
+[n E2615 UARTStates UART_IDLE UART_PUSH UART_READ FIFO_FULL FIFO_EMPTY  ]
+"23
+[; ;./UART.h: 23: {
+[s S373 `E2615 1 ]
+[n S373 uartData currentState ]
+"43
+[; ;./UART.h: 43: uint8_t UARTTx(char *);
 [v _UARTTx `(uc ~T0 @X0 0 ef1`*uc ]
 "2189 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h: 2189:     struct {
@@ -519,6 +527,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "34 ./LEDApplication.h
 [; ;./LEDApplication.h: 34: LEDData ledData;
 [v _ledData `S372 ~T0 @X0 1 e ]
+"27 ./UART.h
+[; ;./UART.h: 27: uartData uData;
+[v _uData `S373 ~T0 @X0 1 e ]
+"35
+[; ;./UART.h: 35: uint8_t fullWordReceived;
+[v _fullWordReceived `uc ~T0 @X0 1 e ]
 "6 LEDApplication.c
 [; ;LEDApplication.c: 6: void LEDProcess()
 [v _LEDProcess `(v ~T0 @X0 1 ef ]
@@ -529,13 +543,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "9
 [; ;LEDApplication.c: 9:     switch(ledData.LEDCurrentState)
-[e $U 375  ]
+[e $U 376  ]
 "10
 [; ;LEDApplication.c: 10:     {
 {
 "11
 [; ;LEDApplication.c: 11:         case LED_OFF:
-[e :U 376 ]
+[e :U 377 ]
 "12
 [; ;LEDApplication.c: 12:             UARTTx("LED OFF\n");
 [e ( _UARTTx (1 :s 1C ]
@@ -550,10 +564,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . _ledData 0 . `E2596 2 ]
 "16
 [; ;LEDApplication.c: 16:             break;
-[e $U 374  ]
+[e $U 375  ]
 "18
 [; ;LEDApplication.c: 18:         case LED_ON:
-[e :U 377 ]
+[e :U 378 ]
 "19
 [; ;LEDApplication.c: 19:             UARTTx("LED ON\n");
 [e ( _UARTTx (1 :s 2C ]
@@ -568,19 +582,19 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . _ledData 0 . `E2596 2 ]
 "23
 [; ;LEDApplication.c: 23:             break;
-[e $U 374  ]
+[e $U 375  ]
 "25
 [; ;LEDApplication.c: 25:         case LED_WAIT:
-[e :U 378 ]
+[e :U 379 ]
 "26
 [; ;LEDApplication.c: 26:             if (ledData.LEDOnTime > 0)
-[e $ ! > . _ledData 1 -> -> -> 0 `i `l `ul 379  ]
+[e $ ! > . _ledData 1 -> -> -> 0 `i `l `ul 380  ]
 "27
 [; ;LEDApplication.c: 27:             {
 {
 "28
 [; ;LEDApplication.c: 28:                 if (milliSec - ledData.LEDOnTime >= 2000)
-[e $ ! >= - _milliSec . _ledData 1 -> -> -> 2000 `i `l `ul 380  ]
+[e $ ! >= - _milliSec . _ledData 1 -> -> -> 2000 `i `l `ul 381  ]
 "29
 [; ;LEDApplication.c: 29:                 {
 {
@@ -593,21 +607,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 "32
 [; ;LEDApplication.c: 32:                 }
 }
-[e :U 380 ]
+[e :U 381 ]
 "33
 [; ;LEDApplication.c: 33:             }
 }
-[e $U 381  ]
+[e $U 382  ]
 "35
 [; ;LEDApplication.c: 35:             else if (ledData.LEDOffTime > 0)
-[e :U 379 ]
-[e $ ! > . _ledData 2 -> -> -> 0 `i `l `ul 382  ]
+[e :U 380 ]
+[e $ ! > . _ledData 2 -> -> -> 0 `i `l `ul 383  ]
 "36
 [; ;LEDApplication.c: 36:             {
 {
 "37
 [; ;LEDApplication.c: 37:                 if (milliSec - ledData.LEDOffTime >= 2000)
-[e $ ! >= - _milliSec . _ledData 2 -> -> -> 2000 `i `l `ul 383  ]
+[e $ ! >= - _milliSec . _ledData 2 -> -> -> 2000 `i `l `ul 384  ]
 "38
 [; ;LEDApplication.c: 38:                 {
 {
@@ -620,14 +634,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 "41
 [; ;LEDApplication.c: 41:                 }
 }
-[e :U 383 ]
+[e :U 384 ]
 "42
 [; ;LEDApplication.c: 42:             }
 }
-[e $U 384  ]
+[e $U 385  ]
 "43
 [; ;LEDApplication.c: 43:             else
-[e :U 382 ]
+[e :U 383 ]
 "44
 [; ;LEDApplication.c: 44:             {
 {
@@ -637,24 +651,24 @@ Version 4.0 HI-TECH Software Intermediate Code
 "46
 [; ;LEDApplication.c: 46:             }
 }
-[e :U 384 ]
-[e :U 381 ]
+[e :U 385 ]
+[e :U 382 ]
 "48
 [; ;LEDApplication.c: 48:             break;
-[e $U 374  ]
+[e $U 375  ]
 "49
 [; ;LEDApplication.c: 49:     }
 }
-[e $U 374  ]
+[e $U 375  ]
+[e :U 376 ]
+[e [\ -> . _ledData 0 `ui , $ -> . `E2596 1 `ui 377
+ , $ -> . `E2596 0 `ui 378
+ , $ -> . `E2596 2 `ui 379
+ 375 ]
 [e :U 375 ]
-[e [\ -> . _ledData 0 `ui , $ -> . `E2596 1 `ui 376
- , $ -> . `E2596 0 `ui 377
- , $ -> . `E2596 2 `ui 378
- 374 ]
-[e :U 374 ]
 "50
 [; ;LEDApplication.c: 50: }
-[e :UE 373 ]
+[e :UE 374 ]
 }
 "52
 [; ;LEDApplication.c: 52: void LEDinit()
@@ -678,7 +692,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . _ledData 2 -> -> -> 0 `i `l `ul ]
 "58
 [; ;LEDApplication.c: 58: }
-[e :UE 385 ]
+[e :UE 386 ]
 }
 [a 2C 76 69 68 32 79 78 10 0 ]
 [a 1C 76 69 68 32 79 70 70 10 0 ]

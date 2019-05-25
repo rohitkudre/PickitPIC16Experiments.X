@@ -7,6 +7,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./LEDApplication.h: 25: {
 [s S372 `E2605 1 `ul 1 `ul 1 ]
 [n S372 LEDData LEDCurrentState LEDOnTime LEDOffTime ]
+"27 ./UART.h
+[; ;./UART.h: 27: uartData uData;
+[c E2618 0 1 2 3 4 .. ]
+[n E2618 UARTStates UART_IDLE UART_PUSH UART_READ FIFO_FULL FIFO_EMPTY  ]
+"23
+[; ;./UART.h: 23: {
+[s S373 `E2618 1 ]
+[n S373 uartData currentState ]
 [p mainexit ]
 "11 ./OscillatorSetup.h
 [; ;./OscillatorSetup.h: 11: void oscillatorInit(void);
@@ -23,12 +31,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 "32 ./LEDApplication.h
 [; ;./LEDApplication.h: 32: void LEDinit(void);
 [v _LEDinit `(v ~T0 @X0 0 ef ]
-"21 ./UART.h
-[; ;./UART.h: 21: void UARTinit(void);
+"39 ./UART.h
+[; ;./UART.h: 39: void UARTinit(void);
 [v _UARTinit `(v ~T0 @X0 0 ef ]
 "31 ./LEDApplication.h
 [; ;./LEDApplication.h: 31: void LEDProcess(void);
 [v _LEDProcess `(v ~T0 @X0 0 ef ]
+"40 ./UART.h
+[; ;./UART.h: 40: void UARTprocess(void);
+[v _UARTprocess `(v ~T0 @X0 0 ef ]
 "1 main.c
 [; ;main.c: 1: 
 [p x FOSC = INTOSC ]
@@ -557,6 +568,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "34 ./LEDApplication.h
 [; ;./LEDApplication.h: 34: LEDData ledData;
 [v _ledData `S372 ~T0 @X0 1 e ]
+"27 ./UART.h
+[; ;./UART.h: 27: uartData uData;
+[v _uData `S373 ~T0 @X0 1 e ]
+"35
+[; ;./UART.h: 35: uint8_t fullWordReceived;
+[v _fullWordReceived `uc ~T0 @X0 1 e ]
 [v $root$_main `(v ~T0 @X0 0 e ]
 "33 main.c
 [; ;main.c: 33: int main()
@@ -586,24 +603,27 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _UARTinit ..  ]
 "41
 [; ;main.c: 41:     while (1)
-[e :U 375 ]
+[e :U 376 ]
 "42
 [; ;main.c: 42:     {
 {
 "43
 [; ;main.c: 43:         LEDProcess();
 [e ( _LEDProcess ..  ]
+"44
+[; ;main.c: 44:         UARTprocess();
+[e ( _UARTprocess ..  ]
 "45
 [; ;main.c: 45:     }
 }
-[e :U 374 ]
-[e $U 375  ]
-[e :U 376 ]
+[e :U 375 ]
+[e $U 376  ]
+[e :U 377 ]
 "46
 [; ;main.c: 46:     return (0);
 [e ) -> 0 `i ]
-[e $UE 373  ]
+[e $UE 374  ]
 "47
 [; ;main.c: 47: }
-[e :UE 373 ]
+[e :UE 374 ]
 }
