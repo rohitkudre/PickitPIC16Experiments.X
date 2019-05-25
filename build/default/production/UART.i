@@ -1,4 +1,4 @@
-# 1 "main.c"
+# 1 "UART.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,29 +6,9 @@
 # 1 "<built-in>" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "main.c" 2
-#pragma config FOSC = INTOSC
-#pragma config WDTE = OFF
-#pragma config PWRTE = OFF
-#pragma config MCLRE = OFF
-#pragma config CP = OFF
-#pragma config CPD = OFF
-#pragma config BOREN = OFF
-#pragma config CLKOUTEN = ON
-#pragma config IESO = OFF
-#pragma config FCMEN = OFF
-
-
-#pragma config WRT = OFF
-#pragma config PLLEN = OFF
-#pragma config STVREN = OFF
-#pragma config BORV = LO
-#pragma config LVP = ON
-
-
-
-
-
+# 1 "UART.c" 2
+# 1 "./UART.h" 1
+# 10 "./UART.h"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -4484,28 +4464,8 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 2 3
-# 22 "main.c" 2
+# 10 "./UART.h" 2
 
-# 1 "./OscillatorSetup.h" 1
-# 11 "./OscillatorSetup.h"
-void oscillatorInit(void);
-# 23 "main.c" 2
-
-# 1 "./PortInit.h" 1
-# 11 "./PortInit.h"
-void portInit(void);
-# 24 "main.c" 2
-
-# 1 "./PinDefs.h" 1
-# 25 "main.c" 2
-
-# 1 "./InterruptHandler.h" 1
-# 11 "./InterruptHandler.h"
-void InterruptInit(void);
-# 26 "main.c" 2
-
-# 1 "./Timer.h" 1
-# 10 "./Timer.h"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdint.h" 1 3
 # 22 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdint.h" 3
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 1 3
@@ -4589,42 +4549,9 @@ typedef int32_t int_fast32_t;
 typedef uint32_t uint_fast16_t;
 typedef uint32_t uint_fast32_t;
 # 155 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdint.h" 2 3
-# 10 "./Timer.h" 2
+# 11 "./UART.h" 2
 
 
-extern volatile uint16_t secCounter;
-extern volatile uint32_t milliSec;
-extern volatile uint32_t sec;
-
-void Timer0Init(void);
-void getSec(void);
-void getmSec(void);
-# 27 "main.c" 2
-
-# 1 "./LEDApplication.h" 1
-# 17 "./LEDApplication.h"
-typedef enum LEDStates
-{
-    LED_ON = 0,
-    LED_OFF,
-    LED_WAIT
-} LEDStates;
-
-typedef struct LEDData
-{
-    LEDStates LEDCurrentState;
-    uint32_t LEDOnTime;
-    uint32_t LEDOffTime;
-} LEDData;
-
-void LEDProcess(void);
-void LEDinit(void);
-
-LEDData ledData;
-# 28 "main.c" 2
-
-# 1 "./UART.h" 1
-# 13 "./UART.h"
 typedef enum UARTStates
 {
     UART_IDLE = 0,
@@ -4664,23 +4591,340 @@ char *fifoRead(void );
 
 uint8_t checkUartFull(void );
 uint8_t checkUartEmpty(void );
-# 29 "main.c" 2
+# 1 "UART.c" 2
+
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\string.h" 1 3
+# 25 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\string.h" 3
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 1 3
+# 419 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef struct __locale_struct * locale_t;
+# 25 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\string.h" 2 3
+
+
+void *memcpy (void *restrict, const void *restrict, size_t);
+void *memmove (void *, const void *, size_t);
+void *memset (void *, int, size_t);
+int memcmp (const void *, const void *, size_t);
+void *memchr (const void *, int, size_t);
+
+char *strcpy (char *restrict, const char *restrict);
+char *strncpy (char *restrict, const char *restrict, size_t);
+
+char *strcat (char *restrict, const char *restrict);
+char *strncat (char *restrict, const char *restrict, size_t);
+
+int strcmp (const char *, const char *);
+int strncmp (const char *, const char *, size_t);
+
+int strcoll (const char *, const char *);
+size_t strxfrm (char *restrict, const char *restrict, size_t);
+
+char *strchr (const char *, int);
+char *strrchr (const char *, int);
+
+size_t strcspn (const char *, const char *);
+size_t strspn (const char *, const char *);
+char *strpbrk (const char *, const char *);
+char *strstr (const char *, const char *);
+char *strtok (char *restrict, const char *restrict);
+
+size_t strlen (const char *);
+
+char *strerror (int);
+# 65 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\string.h" 3
+char *strtok_r (char *restrict, const char *restrict, char **restrict);
+int strerror_r (int, char *, size_t);
+char *stpcpy(char *restrict, const char *restrict);
+char *stpncpy(char *restrict, const char *restrict, size_t);
+size_t strnlen (const char *, size_t);
+char *strdup (const char *);
+char *strndup (const char *, size_t);
+char *strsignal(int);
+char *strerror_l (int, locale_t);
+int strcoll_l (const char *, const char *, locale_t);
+size_t strxfrm_l (char *restrict, const char *restrict, size_t, locale_t);
 
 
 
 
-int main()
+void *memccpy (void *restrict, const void *restrict, int, size_t);
+# 2 "UART.c" 2
+
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdio.h" 1 3
+# 24 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdio.h" 3
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 1 3
+# 10 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef void * va_list[1];
+
+
+
+
+typedef void * __isoc_va_list[1];
+# 145 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef long ssize_t;
+# 254 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef long long off_t;
+# 407 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef struct _IO_FILE FILE;
+# 24 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdio.h" 2 3
+# 52 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdio.h" 3
+typedef union _G_fpos64_t {
+ char __opaque[16];
+ double __align;
+} fpos_t;
+
+extern FILE *const stdin;
+extern FILE *const stdout;
+extern FILE *const stderr;
+
+
+
+
+
+FILE *fopen(const char *restrict, const char *restrict);
+FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
+int fclose(FILE *);
+
+int remove(const char *);
+int rename(const char *, const char *);
+
+int feof(FILE *);
+int ferror(FILE *);
+int fflush(FILE *);
+void clearerr(FILE *);
+
+int fseek(FILE *, long, int);
+long ftell(FILE *);
+void rewind(FILE *);
+
+int fgetpos(FILE *restrict, fpos_t *restrict);
+int fsetpos(FILE *, const fpos_t *);
+
+size_t fread(void *restrict, size_t, size_t, FILE *restrict);
+size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
+
+int fgetc(FILE *);
+int getc(FILE *);
+int getchar(void);
+int ungetc(int, FILE *);
+
+int fputc(int, FILE *);
+int putc(int, FILE *);
+int putchar(int);
+
+char *fgets(char *restrict, int, FILE *restrict);
+
+char *gets(char *);
+
+
+int fputs(const char *restrict, FILE *restrict);
+int puts(const char *);
+
+
+#pragma printf_check(printf) const
+#pragma printf_check(vprintf) const
+#pragma printf_check(sprintf) const
+#pragma printf_check(snprintf) const
+#pragma printf_check(vsprintf) const
+#pragma printf_check(vsnprintf) const
+
+
+int printf(const char *restrict, ...);
+int fprintf(FILE *restrict, const char *restrict, ...);
+int sprintf(char *restrict, const char *restrict, ...);
+int snprintf(char *restrict, size_t, const char *restrict, ...);
+
+int vprintf(const char *restrict, __isoc_va_list);
+int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
+int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
+int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
+
+int scanf(const char *restrict, ...);
+int fscanf(FILE *restrict, const char *restrict, ...);
+int sscanf(const char *restrict, const char *restrict, ...);
+int vscanf(const char *restrict, __isoc_va_list);
+int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
+int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
+
+void perror(const char *);
+
+int setvbuf(FILE *restrict, char *restrict, int, size_t);
+void setbuf(FILE *restrict, char *restrict);
+
+char *tmpnam(char *);
+FILE *tmpfile(void);
+
+
+
+
+FILE *fmemopen(void *restrict, size_t, const char *restrict);
+FILE *open_memstream(char **, size_t *);
+FILE *fdopen(int, const char *);
+FILE *popen(const char *, const char *);
+int pclose(FILE *);
+int fileno(FILE *);
+int fseeko(FILE *, off_t, int);
+off_t ftello(FILE *);
+int dprintf(int, const char *restrict, ...);
+int vdprintf(int, const char *restrict, __isoc_va_list);
+void flockfile(FILE *);
+int ftrylockfile(FILE *);
+void funlockfile(FILE *);
+int getc_unlocked(FILE *);
+int getchar_unlocked(void);
+int putc_unlocked(int, FILE *);
+int putchar_unlocked(int);
+ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
+ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
+int renameat(int, const char *, int, const char *);
+char *ctermid(char *);
+
+
+
+
+
+
+
+char *tempnam(const char *, const char *);
+# 3 "UART.c" 2
+
+
+char uartFifoBuff[256] = {0};
+static uint8_t fifoHead;
+static uint8_t fifoTail;
+
+
+void UARTinit()
 {
-    oscillatorInit();
-    portInit();
-    InterruptInit();
-    Timer0Init();
-    LEDinit();
-    UARTinit();
-    while (1)
+    TXCKSEL = 1;
+    RXDTSEL = 1;
+    BRG16 = 1;
+    SPBRGL = 0x10;
+    SPBRGH = 0x00;
+
+    BRGH = 1;
+    TXEN = 1;
+    CREN = 1;
+    SYNC = 0;
+    SPEN = 1;
+
+    fifoHead = 0;
+    fifoTail = 0;
+    uData.currentState = UART_IDLE;
+}
+
+void UARTprocess()
+{
+    uint8_t actionStatus = 0, i = 0;
+    char receivedString[32] = {0};
+    char *receivePtr;
+    switch (uData.currentState)
     {
-        LEDProcess();
-        UARTprocess();
+        case UART_IDLE:
+            if (uartRX)
+            {
+                uData.currentState = UART_PUSH;
+            }
+            break;
+        case UART_PUSH:
+            actionStatus = fifoWrite(RCREG);
+            if (!actionStatus)
+            {
+                uData.currentState = FIFO_FULL;
+            }
+            break;
+        case UART_READ:
+
+            receivePtr = fifoRead();
+            while (receivePtr)
+            {
+                receivedString[i] = *receivePtr;
+            }
+            UARTTx("Received String: \n");
+            UARTTx(receivedString);
+            UARTTx("\n");
+            if (!checkUartEmpty())
+            {
+                uData.currentState = UART_READ;
+            }
+            else
+            {
+                uData.currentState = UART_IDLE;
+            }
+            break;
+        case FIFO_FULL:
+            UARTTx("Fifo Full!! \n");
+            break;
+        case FIFO_EMPTY:
+            UARTTx("Fifo Empty!! \n");
     }
-    return (0);
+}
+
+uint8_t UARTTx(char *sendString)
+{
+    while (*sendString)
+    {
+        while (!TRMT);
+        TXREG = *sendString;
+        sendString ++;
+    }
+    return 1;
+}
+# 99 "UART.c"
+uint8_t fifoWrite(volatile unsigned char letter)
+{
+    if (!checkUartFull())
+    {
+        if (letter == '\n' || letter == '\r')
+        {
+            letter = '\0';
+            uData.currentState = UART_READ;
+        }
+        uartFifoBuff[fifoHead] = letter;
+        fifoHead = (fifoHead + 1) % 256;
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+char *fifoRead()
+{
+    uint8_t returnIndex;
+    if (checkUartEmpty())
+    {
+        return ((void*)0);
+    }
+    else
+    {
+        returnIndex = fifoTail;
+        fifoTail = (fifoTail + 1) % 256;
+        return (&uartFifoBuff[returnIndex]);
+    }
+}
+
+uint8_t checkUartFull()
+{
+    if ((fifoHead + 1) % 256 != fifoTail)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+uint8_t checkUartEmpty()
+{
+    if (fifoHead == fifoTail)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
 }

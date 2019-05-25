@@ -4597,15 +4597,46 @@ void getmSec(void);
 # 3 "LEDApplication.c" 2
 
 # 1 "./UART.h" 1
-# 17 "./UART.h"
+# 13 "./UART.h"
+typedef enum UARTStates
+{
+    UART_IDLE = 0,
+    UART_PUSH,
+    UART_READ,
+    FIFO_FULL,
+    FIFO_EMPTY
+} UARTStates;
+
+typedef struct uartData
+{
+    UARTStates currentState;
+} uartData;
+
+uartData uData;
+
+
+
+
+
+extern char uartFifoBuff[256];
 extern volatile uint8_t uartRX;
-extern uint8_t fullWordReceived;
+uint8_t fullWordReceived;
 
 extern char UARTRxBuff[];
+
 void UARTinit(void);
 void UARTprocess(void);
+
+
 uint8_t UARTTx(char *);
 void UARTRx(void);
+
+
+uint8_t fifoWrite(void );
+char *fifoRead(void );
+
+uint8_t checkUartFull(void );
+uint8_t checkUartEmpty(void );
 # 4 "LEDApplication.c" 2
 
 

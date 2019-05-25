@@ -9,15 +9,44 @@ LED_ON 0
 LED_OFF 1
 LED_WAIT 2
 ]
+"27 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X/UART.h
+[e E2618 UARTStates `uc
+UART_IDLE 0
+UART_PUSH 1
+UART_READ 2
+FIFO_FULL 3
+FIFO_EMPTY 4
+]
+"34 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X/LEDApplication.h
 [e E2596 LEDStates `uc
 LED_ON 0
 LED_OFF 1
 LED_WAIT 2
 ]
+"27 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X/UART.h
+[e E2615 UARTStates `uc
+UART_IDLE 0
+UART_PUSH 1
+UART_READ 2
+FIFO_FULL 3
+FIFO_EMPTY 4
+]
+[e E2603 UARTStates `uc
+UART_IDLE 0
+UART_PUSH 1
+UART_READ 2
+FIFO_FULL 3
+FIFO_EMPTY 4
+]
+[e E2596 UARTStates `uc
+UART_IDLE 0
+UART_PUSH 1
+UART_READ 2
+FIFO_FULL 3
+FIFO_EMPTY 4
+]
 "10 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
-"12 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\strlen.c
-[v _strlen strlen `(ui  1 e 2 0 ]
 "4 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\Umul8_16.c
 [v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
 "6 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\pic\__eeprom.c
@@ -26,7 +55,7 @@ LED_WAIT 2
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
 "11 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X\InterruptHandler.c
 [v _timer0Interrupt timer0Interrupt `II(v  1 e 1 0 ]
-"32
+"33
 [v _InterruptInit InterruptInit `(v  1 e 1 0 ]
 "6 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X\LEDApplication.c
 [v _LEDProcess LEDProcess `(v  1 e 1 0 ]
@@ -40,20 +69,31 @@ LED_WAIT 2
 [v _portInit portInit `(v  1 e 1 0 ]
 "4 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X\Timer.c
 [v _Timer0Init Timer0Init `(v  1 e 1 0 ]
-"7 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X\UART.c
+"10 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X\UART.c
 [v _UARTinit UARTinit `(v  1 e 1 0 ]
-"22
+"29
+[v _UARTprocess UARTprocess `(v  1 e 1 0 ]
+"77
 [v _UARTTx UARTTx `(uc  1 e 1 0 ]
-"38
-[v _UARTRx UARTRx `(v  1 e 1 0 ]
+"100
+[v _fifoWrite fifoWrite `(uc  1 e 1 0 ]
+"121
+[v _fifoRead fifoRead `(*.39uc  1 e 1 0 ]
+"136
+[v _checkUartFull checkUartFull `(uc  1 e 1 0 ]
+"148
+[v _checkUartEmpty checkUartEmpty `(uc  1 e 1 0 ]
 [s S26 LEDData 9 `E2605 1 LEDCurrentState 1 0 `ul 1 LEDOnTime 4 1 `ul 1 LEDOffTime 4 5 ]
 "34 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X/LEDApplication.h
 [v _ledData ledData `S26  1 e 9 0 ]
+[s S36 uartData 1 `E2618 1 currentState 1 0 ]
+"27 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X/UART.h
+[v _uData uData `S36  1 e 1 0 ]
 "1185 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h
 [v _TRISA TRISA `VEuc  1 e 1 @140 ]
 "1235
 [v _TRISB TRISB `VEuc  1 e 1 @141 ]
-[s S74 . 1 `uc 1 TRISC0 1 0 :1:0 
+[s S85 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -63,13 +103,13 @@ LED_WAIT 2
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "1291
-[u S83 . 1 `S74 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES83  1 e 1 @142 ]
+[u S94 . 1 `S85 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES94  1 e 1 @142 ]
 "1515
 [v _OPTION_REG OPTION_REG `VEuc  1 e 1 @149 ]
 "1766
 [v _OSCCON OSCCON `VEuc  1 e 1 @153 ]
-[s S118 . 1 `uc 1 LATC0 1 0 :1:0 
+[s S137 . 1 `uc 1 LATC0 1 0 :1:0 
 `uc 1 LATC1 1 0 :1:1 
 `uc 1 LATC2 1 0 :1:2 
 `uc 1 LATC3 1 0 :1:3 
@@ -79,8 +119,8 @@ LED_WAIT 2
 `uc 1 LATC7 1 0 :1:7 
 ]
 "2200
-[u S127 . 1 `S118 1 . 1 0 ]
-[v _LATCbits LATCbits `VES127  1 e 1 @270 ]
+[u S146 . 1 `S137 1 . 1 0 ]
+[v _LATCbits LATCbits `VES146  1 e 1 @270 ]
 "3286
 [v _RCREG RCREG `VEuc  1 e 1 @409 ]
 "3306
@@ -127,8 +167,12 @@ LED_WAIT 2
 [v _sec sec `VEul  1 e 4 0 ]
 "9
 [v _uartRX uartRX `VEuc  1 e 1 0 ]
-"4 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X\UART.c
-[v _uartRXBuff uartRXBuff `[128]uc  1 e 128 @9072 ]
+"5 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X\UART.c
+[v _uartFifoBuff uartFifoBuff `[256]uc  1 e 256 @8944 ]
+"6
+[v _fifoHead fifoHead `uc  1 s 1 fifoHead ]
+"7
+[v _fifoTail fifoTail `uc  1 s 1 fifoTail ]
 "33 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X\main.c
 [v _main main `(i  1 e 2 0 ]
 {
@@ -144,17 +188,33 @@ LED_WAIT 2
 {
 "7
 } 0
-"7 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X\UART.c
+"29 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X\UART.c
+[v _UARTprocess UARTprocess `(v  1 e 1 0 ]
+{
+"32
+[v UARTprocess@receivedString receivedString `[32]uc  1 a 32 4 ]
+"33
+[v UARTprocess@receivePtr receivePtr `*.39uc  1 a 2 38 ]
+"31
+[v UARTprocess@i i `uc  1 a 1 37 ]
+"75
+} 0
+"121
+[v _fifoRead fifoRead `(*.39uc  1 e 1 0 ]
+{
+"123
+[v fifoRead@returnIndex returnIndex `uc  1 a 1 4 ]
+"134
+} 0
+"148
+[v _checkUartEmpty checkUartEmpty `(uc  1 e 1 0 ]
+{
+"158
+} 0
+"10
 [v _UARTinit UARTinit `(v  1 e 1 0 ]
 {
-"20
-} 0
-"38
-[v _UARTRx UARTRx `(v  1 e 1 0 ]
-{
-"40
-[v UARTRx@receivedString receivedString `[2]uc  1 a 2 10 ]
-"48
+"27
 } 0
 "4 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X\Timer.c
 [v _Timer0Init Timer0Init `(v  1 e 1 0 ]
@@ -171,28 +231,31 @@ LED_WAIT 2
 {
 "50
 } 0
-"22 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X\UART.c
+"77 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X\UART.c
 [v _UARTTx UARTTx `(uc  1 e 1 0 ]
 {
-[v UARTTx@sendString sendString `*.26uc  1 p 2 6 ]
-"36
+[v UARTTx@sendString sendString `*.26uc  1 p 2 0 ]
+"86
 } 0
-"12 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\strlen.c
-[v _strlen strlen `(ui  1 e 2 0 ]
-{
-"14
-[v strlen@a a `*.26DCuc  1 a 2 4 ]
-"12
-[v strlen@s s `*.26DCuc  1 p 2 1 ]
-"26
-} 0
-"32 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X\InterruptHandler.c
+"33 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X\InterruptHandler.c
 [v _InterruptInit InterruptInit `(v  1 e 1 0 ]
 {
-"38
+"39
 } 0
 "11
 [v _timer0Interrupt timer0Interrupt `II(v  1 e 1 0 ]
 {
-"29
+"30
+} 0
+"100 G:\Education\Micro-Projects\Projects\PIC\Pic16PICKitLowPinCountExperiments\PickitPIC16Experiments.X\UART.c
+[v _fifoWrite fifoWrite `(uc  1 e 1 0 ]
+{
+"102
+[v fifoWrite@letter letter `uc  1 a 1 2 ]
+"119
+} 0
+"136
+[v _checkUartFull checkUartFull `(uc  1 e 1 0 ]
+{
+"146
 } 0

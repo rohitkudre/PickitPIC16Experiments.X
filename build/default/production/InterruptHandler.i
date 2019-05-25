@@ -4577,18 +4577,45 @@ extern __bank0 __bit __timeout;
 
 
 
+typedef enum UARTStates
+{
+    UART_IDLE = 0,
+    UART_PUSH,
+    UART_READ,
+    FIFO_FULL,
+    FIFO_EMPTY
+} UARTStates;
+
+typedef struct uartData
+{
+    UARTStates currentState;
+} uartData;
+
+uartData uData;
 
 
 
 
+
+extern char uartFifoBuff[256];
 extern volatile uint8_t uartRX;
-extern uint8_t fullWordReceived;
+uint8_t fullWordReceived;
 
 extern char UARTRxBuff[];
+
 void UARTinit(void);
 void UARTprocess(void);
+
+
 uint8_t UARTTx(char *);
 void UARTRx(void);
+
+
+uint8_t fifoWrite(volatile unsigned char);
+char *fifoRead(void );
+
+uint8_t checkUartFull(void );
+uint8_t checkUartEmpty(void );
 # 3 "InterruptHandler.c" 2
 
 
@@ -4615,7 +4642,7 @@ void __attribute__((picinterrupt(("")))) timer0Interrupt()
     if (RCIF == 1)
     {
         uartRX = 1;
-        UARTRx();
+
     }
 }
 
