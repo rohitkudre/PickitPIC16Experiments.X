@@ -4586,11 +4586,12 @@ uint8_t UARTTx(char *);
 void UARTRx(void);
 
 
-uint8_t fifoWrite(volatile unsigned char);
+uint8_t fifoWrite(void );
 char *fifoRead(void );
 
 uint8_t checkUartFull(void );
 uint8_t checkUartEmpty(void );
+void fifoPurge(void );
 # 1 "UART.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\string.h" 1 3
@@ -4827,18 +4828,19 @@ void UARTprocess()
             }
             break;
         case UART_PUSH:
-            actionStatus = fifoWrite(RCREG);
-            if (!actionStatus)
-            {
-                uData.currentState = FIFO_FULL;
-            }
+
+
+
+
+
             break;
         case UART_READ:
-
             receivePtr = fifoRead();
             while (receivePtr)
             {
                 receivedString[i] = *receivePtr;
+                receivePtr = fifoRead();
+                i++;
             }
             UARTTx("Received String: \n");
             UARTTx(receivedString);
@@ -4853,6 +4855,8 @@ void UARTprocess()
             }
             break;
         case FIFO_FULL:
+            fifoPurge();
+            uData.currentState = UART_IDLE;
             UARTTx("Fifo Full!! \n");
             break;
         case FIFO_EMPTY:
@@ -4870,12 +4874,16 @@ uint8_t UARTTx(char *sendString)
     }
     return 1;
 }
-# 99 "UART.c"
-uint8_t fifoWrite(volatile unsigned char letter)
+
+uint8_t fifoWrite()
 {
+    char letter = RCREG;
     if (!checkUartFull())
     {
-        if (letter == '\n' || letter == '\r')
+        if (letter == '\n' ||
+            letter == '\r' ||
+            letter == '\0' ||
+            letter == 0x3)
         {
             letter = '\0';
             uData.currentState = UART_READ;
@@ -4886,6 +4894,7 @@ uint8_t fifoWrite(volatile unsigned char letter)
     }
     else
     {
+        uData.currentState = FIFO_FULL;
         return 0;
     }
 }
@@ -4907,7 +4916,7 @@ char *fifoRead()
 
 uint8_t checkUartFull()
 {
-    if ((fifoHead + 1) % 256 != fifoTail)
+    if ((fifoHead + 1) % 256 == fifoTail)
     {
         return 1;
     }
@@ -4927,4 +4936,10 @@ uint8_t checkUartEmpty()
     {
         return 0;
     }
+}
+
+void fifoPurge()
+{
+    fifoHead = 0;
+    fifoTail = 0;
 }

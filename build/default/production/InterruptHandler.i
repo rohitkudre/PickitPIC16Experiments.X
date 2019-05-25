@@ -4611,11 +4611,12 @@ uint8_t UARTTx(char *);
 void UARTRx(void);
 
 
-uint8_t fifoWrite(volatile unsigned char);
+uint8_t fifoWrite(void );
 char *fifoRead(void );
 
 uint8_t checkUartFull(void );
 uint8_t checkUartEmpty(void );
+void fifoPurge(void );
 # 3 "InterruptHandler.c" 2
 
 
@@ -4641,8 +4642,7 @@ void __attribute__((picinterrupt(("")))) timer0Interrupt()
 
     if (RCIF == 1)
     {
-        uartRX = 1;
-
+        fifoWrite();
     }
 }
 

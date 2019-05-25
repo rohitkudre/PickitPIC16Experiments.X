@@ -4641,7 +4641,6 @@ void __attribute__((picinterrupt(("")))) timer0Interrupt()
 
     if (RCIF == 1)
     {
-        uartRX = 1;
         fifoWrite();
     }
 }
