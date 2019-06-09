@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c oscillatorInit.c PortInit.c LEDApplication.c Timer.c InterruptHandler.c UART.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c oscillatorInit.c PortInit.c LEDApplication.c Timer.c InterruptHandler.c UART.c WatchDog.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.p1 ${OBJECTDIR}/oscillatorInit.p1 ${OBJECTDIR}/PortInit.p1 ${OBJECTDIR}/LEDApplication.p1 ${OBJECTDIR}/Timer.p1 ${OBJECTDIR}/InterruptHandler.p1 ${OBJECTDIR}/UART.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.p1.d ${OBJECTDIR}/oscillatorInit.p1.d ${OBJECTDIR}/PortInit.p1.d ${OBJECTDIR}/LEDApplication.p1.d ${OBJECTDIR}/Timer.p1.d ${OBJECTDIR}/InterruptHandler.p1.d ${OBJECTDIR}/UART.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.p1 ${OBJECTDIR}/oscillatorInit.p1 ${OBJECTDIR}/PortInit.p1 ${OBJECTDIR}/LEDApplication.p1 ${OBJECTDIR}/Timer.p1 ${OBJECTDIR}/InterruptHandler.p1 ${OBJECTDIR}/UART.p1 ${OBJECTDIR}/WatchDog.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.p1.d ${OBJECTDIR}/oscillatorInit.p1.d ${OBJECTDIR}/PortInit.p1.d ${OBJECTDIR}/LEDApplication.p1.d ${OBJECTDIR}/Timer.p1.d ${OBJECTDIR}/InterruptHandler.p1.d ${OBJECTDIR}/UART.p1.d ${OBJECTDIR}/WatchDog.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.p1 ${OBJECTDIR}/oscillatorInit.p1 ${OBJECTDIR}/PortInit.p1 ${OBJECTDIR}/LEDApplication.p1 ${OBJECTDIR}/Timer.p1 ${OBJECTDIR}/InterruptHandler.p1 ${OBJECTDIR}/UART.p1
+OBJECTFILES=${OBJECTDIR}/main.p1 ${OBJECTDIR}/oscillatorInit.p1 ${OBJECTDIR}/PortInit.p1 ${OBJECTDIR}/LEDApplication.p1 ${OBJECTDIR}/Timer.p1 ${OBJECTDIR}/InterruptHandler.p1 ${OBJECTDIR}/UART.p1 ${OBJECTDIR}/WatchDog.p1
 
 # Source Files
-SOURCEFILES=main.c oscillatorInit.c PortInit.c LEDApplication.c Timer.c InterruptHandler.c UART.c
+SOURCEFILES=main.c oscillatorInit.c PortInit.c LEDApplication.c Timer.c InterruptHandler.c UART.c WatchDog.c
 
 
 CFLAGS=
@@ -149,6 +149,14 @@ ${OBJECTDIR}/UART.p1: UART.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/UART.d ${OBJECTDIR}/UART.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/UART.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
+${OBJECTDIR}/WatchDog.p1: WatchDog.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/WatchDog.p1.d 
+	@${RM} ${OBJECTDIR}/WatchDog.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/WatchDog.p1 WatchDog.c 
+	@-${MV} ${OBJECTDIR}/WatchDog.d ${OBJECTDIR}/WatchDog.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/WatchDog.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
 else
 ${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
@@ -205,6 +213,14 @@ ${OBJECTDIR}/UART.p1: UART.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/UART.p1 UART.c 
 	@-${MV} ${OBJECTDIR}/UART.d ${OBJECTDIR}/UART.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/UART.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/WatchDog.p1: WatchDog.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/WatchDog.p1.d 
+	@${RM} ${OBJECTDIR}/WatchDog.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/WatchDog.p1 WatchDog.c 
+	@-${MV} ${OBJECTDIR}/WatchDog.d ${OBJECTDIR}/WatchDog.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/WatchDog.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 

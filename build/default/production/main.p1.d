@@ -6,4 +6,5 @@ PinDefs.h  \
 InterruptHandler.h  \
 Timer.h  \
 LEDApplication.h  \
-UART.h 
+UART.h  \
+WatchDog.h 

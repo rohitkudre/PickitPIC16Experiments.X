@@ -1,5 +1,15 @@
+#include <xc.h>
+#include "OscillatorSetup.h"
+#include "PortInit.h"
+#include "PinDefs.h"
+#include "InterruptHandler.h"
+#include "Timer.h"
+#include "LEDApplication.h"
+#include "UART.h"
+#include "WatchDog.h"
+
 #pragma config FOSC = INTOSC    // Oscillator Selection (INTOSC oscillator: I/O function on CLKIN pin)
-#pragma config WDTE = OFF       // Watchdog Timer Enable (WDT disabled)
+#pragma config WDTE = ON       // Watchdog Timer Enable (WDT enabled)
 #pragma config PWRTE = OFF      // Power-up Timer Enable (PWRT disabled)
 #pragma config MCLRE = OFF      // MCLR Pin Function Select (MCLR/VPP pin function is digital input)
 #pragma config CP = OFF         // Flash Program Memory Code Protection (Program memory code protection is disabled)
@@ -19,15 +29,6 @@
 // #pragma config statements should precede project file includes.
 // Use project enums instead of #define for ON and OFF.
 
-#include <xc.h>
-#include "OscillatorSetup.h"
-#include "PortInit.h"
-#include "PinDefs.h"
-#include "InterruptHandler.h"
-#include "Timer.h"
-#include "LEDApplication.h"
-#include "UART.h"
-
 #define _XTAL_FREQ 8000000
 
 int main()
@@ -38,8 +39,11 @@ int main()
     Timer0Init();
     LEDinit();
     UARTinit();
+    UARTTx("**********System Starting**********\n");
+    watchDogInit();
     while (1)
     {
+        CLRWDT(); // pet the dog
         LEDProcess();
         UARTprocess();
     }

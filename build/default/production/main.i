@@ -7,28 +7,6 @@
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main.c" 2
-#pragma config FOSC = INTOSC
-#pragma config WDTE = OFF
-#pragma config PWRTE = OFF
-#pragma config MCLRE = OFF
-#pragma config CP = OFF
-#pragma config CPD = OFF
-#pragma config BOREN = OFF
-#pragma config CLKOUTEN = ON
-#pragma config IESO = OFF
-#pragma config FCMEN = OFF
-
-
-#pragma config WRT = OFF
-#pragma config PLLEN = OFF
-#pragma config STVREN = OFF
-#pragma config BORV = LO
-#pragma config LVP = ON
-
-
-
-
-
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -4484,25 +4462,25 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 2 3
-# 22 "main.c" 2
+# 1 "main.c" 2
 
 # 1 "./OscillatorSetup.h" 1
 # 11 "./OscillatorSetup.h"
 void oscillatorInit(void);
-# 23 "main.c" 2
+# 2 "main.c" 2
 
 # 1 "./PortInit.h" 1
 # 11 "./PortInit.h"
 void portInit(void);
-# 24 "main.c" 2
+# 3 "main.c" 2
 
 # 1 "./PinDefs.h" 1
-# 25 "main.c" 2
+# 4 "main.c" 2
 
 # 1 "./InterruptHandler.h" 1
 # 11 "./InterruptHandler.h"
 void InterruptInit(void);
-# 26 "main.c" 2
+# 5 "main.c" 2
 
 # 1 "./Timer.h" 1
 # 10 "./Timer.h"
@@ -4599,7 +4577,7 @@ extern volatile uint32_t sec;
 void Timer0Init(void);
 void getSec(void);
 void getmSec(void);
-# 27 "main.c" 2
+# 6 "main.c" 2
 
 # 1 "./LEDApplication.h" 1
 # 17 "./LEDApplication.h"
@@ -4621,7 +4599,7 @@ void LEDProcess(void);
 void LEDinit(void);
 
 LEDData ledData;
-# 28 "main.c" 2
+# 7 "main.c" 2
 
 # 1 "./UART.h" 1
 # 13 "./UART.h"
@@ -4665,7 +4643,33 @@ char *fifoRead(void );
 uint8_t checkUartFull(void );
 uint8_t checkUartEmpty(void );
 void fifoPurge(void );
-# 29 "main.c" 2
+# 8 "main.c" 2
+
+# 1 "./WatchDog.h" 1
+# 13 "./WatchDog.h"
+void watchDogInit(void);
+# 9 "main.c" 2
+
+
+#pragma config FOSC = INTOSC
+#pragma config WDTE = ON
+#pragma config PWRTE = OFF
+#pragma config MCLRE = OFF
+#pragma config CP = OFF
+#pragma config CPD = OFF
+#pragma config BOREN = OFF
+#pragma config CLKOUTEN = ON
+#pragma config IESO = OFF
+#pragma config FCMEN = OFF
+
+
+#pragma config WRT = OFF
+#pragma config PLLEN = OFF
+#pragma config STVREN = OFF
+#pragma config BORV = LO
+#pragma config LVP = ON
+
+
 
 
 
@@ -4678,10 +4682,14 @@ int main()
     Timer0Init();
     LEDinit();
     UARTinit();
+    UARTTx("**********System Starting**********\n");
+    watchDogInit();
     while (1)
     {
+        __asm("clrwdt");
         LEDProcess();
         UARTprocess();
+        while(1);
     }
     return (0);
 }

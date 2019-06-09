@@ -34,45 +34,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 "39 ./UART.h
 [; ;./UART.h: 39: void UARTinit(void);
 [v _UARTinit `(v ~T0 @X0 0 ef ]
+"43
+[; ;./UART.h: 43: uint8_t UARTTx(char *);
+[v _UARTTx `(uc ~T0 @X0 0 ef1`*uc ]
+"13 ./WatchDog.h
+[; ;./WatchDog.h: 13: void watchDogInit(void);
+[v _watchDogInit `(v ~T0 @X0 0 ef ]
 "31 ./LEDApplication.h
 [; ;./LEDApplication.h: 31: void LEDProcess(void);
 [v _LEDProcess `(v ~T0 @X0 0 ef ]
 "40 ./UART.h
 [; ;./UART.h: 40: void UARTprocess(void);
 [v _UARTprocess `(v ~T0 @X0 0 ef ]
-"1 main.c
-[; ;main.c: 1: 
-[p x FOSC = INTOSC ]
-"2
-[; ;main.c: 2: 
-[p x WDTE = OFF ]
-"3
-[; ;main.c: 3: 
-[p x PWRTE = OFF ]
-"4
-[p x MCLRE = OFF ]
-"5
-[p x CP = OFF ]
-"6
-[p x CPD = OFF ]
-"7
-[p x BOREN = OFF ]
-"8
-[p x CLKOUTEN = ON ]
-"9
-[p x IESO = OFF ]
-"10
-[p x FCMEN = OFF ]
-"13
-[p x WRT = OFF ]
-"14
-[p x PLLEN = OFF ]
-"15
-[p x STVREN = OFF ]
-"16
-[p x BORV = LO ]
-"17
-[p x LVP = ON ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h: 54: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -574,56 +547,94 @@ Version 4.0 HI-TECH Software Intermediate Code
 "35
 [; ;./UART.h: 35: uint8_t fullWordReceived;
 [v _fullWordReceived `uc ~T0 @X0 1 e ]
+"11 main.c
+[; ;main.c: 11:     LEDinit();
+[p x FOSC = INTOSC ]
+"12
+[; ;main.c: 12:     UARTinit();
+[p x WDTE = ON ]
+"13
+[; ;main.c: 13:     UARTTx("**********System Starting**********\n");
+[p x PWRTE = OFF ]
+"14
+[; ;main.c: 14:     watchDogInit();
+[p x MCLRE = OFF ]
+"15
+[; ;main.c: 15:     while (1)
+[p x CP = OFF ]
+"16
+[; ;main.c: 16:     {
+[p x CPD = OFF ]
+"17
+[; ;main.c: 17:         __asm("clrwdt");
+[p x BOREN = OFF ]
+"18
+[; ;main.c: 18:         LEDProcess();
+[p x CLKOUTEN = ON ]
+"19
+[; ;main.c: 19:         UARTprocess();
+[p x IESO = OFF ]
+"20
+[; ;main.c: 20:         while(1);
+[p x FCMEN = OFF ]
+"23
+[; ;main.c: 23: }
+[p x WRT = OFF ]
+"24
+[p x PLLEN = OFF ]
+"25
+[p x STVREN = OFF ]
+"26
+[p x BORV = LO ]
+"27
+[p x LVP = ON ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"33 main.c
-[; ;main.c: 33: int main()
-[v _main `(i ~T0 @X0 1 ef ]
 "34
-[; ;main.c: 34: {
+[v _main `(i ~T0 @X0 1 ef ]
+"35
 {
 [e :U _main ]
 [f ]
-"35
-[; ;main.c: 35:     oscillatorInit();
-[e ( _oscillatorInit ..  ]
 "36
-[; ;main.c: 36:     portInit();
-[e ( _portInit ..  ]
+[e ( _oscillatorInit ..  ]
 "37
-[; ;main.c: 37:     InterruptInit();
-[e ( _InterruptInit ..  ]
+[e ( _portInit ..  ]
 "38
-[; ;main.c: 38:     Timer0Init();
-[e ( _Timer0Init ..  ]
+[e ( _InterruptInit ..  ]
 "39
-[; ;main.c: 39:     LEDinit();
-[e ( _LEDinit ..  ]
+[e ( _Timer0Init ..  ]
 "40
-[; ;main.c: 40:     UARTinit();
-[e ( _UARTinit ..  ]
+[e ( _LEDinit ..  ]
 "41
-[; ;main.c: 41:     while (1)
-[e :U 376 ]
+[e ( _UARTinit ..  ]
 "42
-[; ;main.c: 42:     {
-{
+[e ( _UARTTx (1 :s 1C ]
 "43
-[; ;main.c: 43:         LEDProcess();
-[e ( _LEDProcess ..  ]
+[e ( _watchDogInit ..  ]
 "44
-[; ;main.c: 44:         UARTprocess();
-[e ( _UARTprocess ..  ]
+[e :U 376 ]
 "45
-[; ;main.c: 45:     }
+{
+"46
+[; <" clrwdt ;# ">
+"47
+[e ( _LEDProcess ..  ]
+"48
+[e ( _UARTprocess ..  ]
+"49
+[e :U 379 ]
+[e :U 378 ]
+[e $U 379  ]
+[e :U 380 ]
+"50
 }
 [e :U 375 ]
 [e $U 376  ]
 [e :U 377 ]
-"46
-[; ;main.c: 46:     return (0);
+"51
 [e ) -> 0 `i ]
 [e $UE 374  ]
-"47
-[; ;main.c: 47: }
+"52
 [e :UE 374 ]
 }
+[a 1C 42 42 42 42 42 42 42 42 42 42 83 121 115 116 101 109 32 83 116 97 114 116 105 110 103 42 42 42 42 42 42 42 42 42 42 10 0 ]
