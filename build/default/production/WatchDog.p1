@@ -1,7 +1,7 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"1766 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h: 1766: extern volatile unsigned char OSCCON __attribute__((address(0x099)));
-[v _OSCCON `Vuc ~T0 @X0 0 e@153 ]
+"1649 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h: 1649: extern volatile unsigned char WDTCON __attribute__((address(0x097)));
+[v _WDTCON `Vuc ~T0 @X0 0 e@151 ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h: 54: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -494,18 +494,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7005
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1829.h: 7005: __asm("TOSH equ 0FEFh");
 [; <" TOSH equ 0FEFh ;# ">
-"4 oscillatorInit.c
-[; ;oscillatorInit.c: 4: void oscillatorInit()
-[v _oscillatorInit `(v ~T0 @X0 1 ef ]
+"4 WatchDog.c
+[; ;WatchDog.c: 4: void watchDogInit()
+[v _watchDogInit `(v ~T0 @X0 1 ef ]
 "5
-[; ;oscillatorInit.c: 5: {
+[; ;WatchDog.c: 5: {
 {
-[e :U _oscillatorInit ]
+[e :U _watchDogInit ]
 [f ]
 "6
-[; ;oscillatorInit.c: 6:     OSCCON = 0x72;
-[e = _OSCCON -> -> 114 `i `uc ]
+[; ;WatchDog.c: 6:     WDTCON = 0x19;
+[e = _WDTCON -> -> 25 `i `uc ]
 "7
-[; ;oscillatorInit.c: 7: }
+[; ;WatchDog.c: 7: }
 [e :UE 372 ]
 }
